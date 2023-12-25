@@ -1,0 +1,7 @@
+.menu {
+  display: none;
+  position: absolute;
+}
+.menu.active {
+  display: block;
+}/*# sourceMappingURL=Drop-downMenu.module.css.map */

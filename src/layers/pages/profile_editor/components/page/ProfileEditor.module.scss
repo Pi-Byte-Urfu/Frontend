@@ -1,0 +1,128 @@
+.profile {
+  padding-top: 87px;
+}
+
+.profileContainer {
+  max-width: 100%;
+}
+
+.data {
+ .sectionHeader {
+  background-color: rgba(101, 123, 255, 1);
+  
+ }
+
+ .dataBody {
+  padding: 63px 128px 63px 64px;
+  display: flex;
+  gap: 150px;
+ }
+}
+
+.sectionHeader {
+  font-size: 24px;
+  font-weight: 600;
+  height: 65px;
+  padding-left: 36px;
+  display: flex;
+  align-items: center;
+  color: rgba(248, 249, 252, 1);
+}
+
+.changePassword {
+  .sectionHeader{
+    background-color: rgba(78, 91, 166, 1);
+  }
+}
+
+.dataForm {
+  display: flex;
+  align-items: end;
+
+  .formFields {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 500px;
+    column-gap: 50px;
+    row-gap: 25px;
+  }
+
+  .FormField {
+    flex: 0 1 358px;
+
+    .input {
+      width: 100%;
+      height: 44px;
+      background-color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      line-height: 24px;
+      color: black;
+      padding: 0 14px;
+      border: 3px solid rgba(102, 112, 133, 0);
+
+      &::placeholder {
+        color: rgba(102, 112, 133, 1);
+      }
+
+      &:focus {
+        border: 3px solid rgba(102, 112, 133, 1);
+      }
+    }
+  }
+}
+
+.dataSaveBtn {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(208, 213, 221, 1);
+  color: rgba(21, 21, 21, 1);
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.changeBody {
+  max-width: 100%;
+  padding: 63px 128px 0px 64px;
+}
+
+.dataForm {
+
+}
+
+.passwordForm {
+  .inputList {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+}
+
+.passwordInput {
+  width: 358px;
+  height: 44px;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+  padding: 0 14px;
+  border: 3px solid rgba(102, 112, 133, 0);
+
+  &::placeholder {
+    color: rgba(102, 112, 133, 1);
+  }
+
+  &:focus {
+    border: 3px solid rgba(102, 112, 133, 1);
+  }
+}
+
+.uploadAvatar {
+  width: 162px;
+  height: 162px;
+  border-radius: 10px;
+}

@@ -1,0 +1,15 @@
+.page {
+  display: flex;
+  padding-top: 50px;
+}
+
+.description {
+  padding: 40px 0;
+  flex-grow: 1;
+  background-color: rgba($color: #6e6c6c, $alpha: 1.0);
+}
+
+.descriptionContainer {
+  margin: 0 auto;
+  max-width: 1400px;
+}

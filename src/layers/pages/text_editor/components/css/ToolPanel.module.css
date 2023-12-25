@@ -1,0 +1,30 @@
+.toolPanelContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.inlineStyles {
+  display: flex;
+  gap: 20px;
+}
+.inlineStyles .inlineStylesItem {
+  border: 1px solid white;
+  padding: 5px 10px;
+}
+
+.blockTypes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.blockTypes .blockTypeBtn {
+  border: 1px solid white;
+  max-width: 150px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}/*# sourceMappingURL=ToolPanel.module.css.map */

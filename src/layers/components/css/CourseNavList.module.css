@@ -1,0 +1,20 @@
+.list {
+  font-size: 18px;
+  width: 350px;
+}
+
+.item {
+  height: 56px;
+  font-weight: 600;
+}
+
+.link {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.link:hover {
+  background-color: #6f6c6c;
+}/*# sourceMappingURL=CourseNavList.module.css.map */

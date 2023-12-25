@@ -1,0 +1,32 @@
+
+.header {
+  margin-bottom: 80px;
+  font-size: 16px;
+  display: flex;
+  align-items: start;
+}
+
+// .nav {
+  
+// }
+
+.navList {
+  display: flex;
+  column-gap: 35px;
+}
+
+.navItem {
+  a {
+    font-weight: 600;
+    color: rgba(248, 249, 252, 1);
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(101, 123, 255, 0);;
+  }
+
+  a.activeLink {
+    color: rgba(101, 123, 255, 1);
+    border-color: rgba(101, 123, 255, 1);
+  }
+}
+

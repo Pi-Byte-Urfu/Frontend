@@ -1,0 +1,72 @@
+.course {
+  flex: 0 0 31%;
+  border-radius: 25px;
+  overflow: hidden;
+}
+@media (max-width: 1048px) {
+  .course {
+    flex: 0 0 48%;
+  }
+}
+@media (max-width: 735px) {
+  .course {
+    flex: 0 0 100%;
+  }
+}
+.course a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-top: 40%;
+}
+.course a .courseCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.itemOverlay {
+  position: absolute;
+  z-index: 99;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.0900735294) 0%, rgb(201, 196, 196) 50%, rgb(201, 196, 196) 100%);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.itemOverlay .removeBtn {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 3px;
+  box-sizing: content-box;
+  border-radius: 50%;
+}
+.itemOverlay .removeBtn img {
+  width: 100%;
+}
+.itemOverlay .removeBtn:hover {
+  border: 1px solid rgb(0, 0, 0);
+}
+.itemOverlay:hover .removeBtn {
+  display: flex;
+}
+
+.courseTitle {
+  position: absolute;
+  color: black;
+  font-weight: 500;
+  font-size: 24px;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, -50%);
+}/*# sourceMappingURL=CourseItem.module.css.map */

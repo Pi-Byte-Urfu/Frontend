@@ -1,0 +1,121 @@
+.register {
+  background-color: white;
+  border-radius: 8px;
+  width: 512px;
+  max-width: 100%;
+  padding: 80px 15px 100px 15px;
+  overflow: hidden;
+}
+
+.registerContainer {
+  width: 358px;
+  margin: 0 auto;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: black;
+  text-align: center;
+  font-weight: 600;
+  
+  @media (max-width: 500px) {
+    margin-bottom: 20px;
+  }
+}
+
+.form {
+  margin-bottom: 10px;
+}
+
+.formFields {
+  margin-bottom: 15px;
+
+  @media(max-width: 500px) {
+    margin-bottom: 40px;
+  }
+}
+
+.formField:not(:last-of-type) {
+  margin-bottom: 22px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  color: rgba(102, 112, 133, 1);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.redirectLink {
+  color: rgba(101, 123, 255, 1);
+  padding-left: 3px;
+}
+
+.registerContainerContent {
+  display: flex;
+  transition: all 1s ease;
+  position: relative;
+
+  &.actives {
+    background-color: red;
+  }
+}
+
+.registerContainerColumn {
+  flex: 0 0 100%;
+}
+
+.registerContainerColumnRadio {
+  display: flex;
+}
+
+.formFieldRadio {
+  display: flex;
+  flex: 0 0 50%;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.radioInput {
+  width: 52.5px;
+  height: 52.5px;
+  border-radius: 50%;
+  border: none;
+  margin-bottom: 20px;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  &:hover {
+    background-color: rgb(223, 224, 228);
+  }
+}
+
+.radioInputStudent {
+  background: rgba(234, 236, 245, 1) url('img/student-icon.svg') no-repeat center;
+}
+
+.radioInputTeacher {
+  background: rgba(234, 236, 245, 1) url('img/teacher-icon.svg') no-repeat center;
+}
+
+.errorMessage {
+  font-weight: 500;
+}

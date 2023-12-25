@@ -1,0 +1,23 @@
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+._container {
+  margin: 0 auto;
+  max-width: 1544px;
+  padding: 0 15px;
+}
+
+.main {
+  background-color: rgb(26, 25, 25);
+  color: rgba(248, 249, 252, 1);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+button, a {
+  cursor: pointer;
+  transition: 0.3s;
+}

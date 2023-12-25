@@ -1,0 +1,8 @@
+
+.menu {
+  display: none;
+  position: absolute;
+  &.active {
+    display: block;
+  }
+}
