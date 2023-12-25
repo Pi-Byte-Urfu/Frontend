@@ -1,7 +1,6 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../root/Root";
-import IndexPage from "../example/IndexPage";
 import ProfilePage from "../layers/pages/profile_page/components/page/ProfilePage";
 import { loginAction } from "../layers/modules/login_form/actions/LoginAction";
 import { registrationAction } from "../layers/modules/RegistrationForm/actions/RegistrationAction";
@@ -30,6 +29,7 @@ import { profileEditDataAction } from "../layers/pages/profile_editor/actions/pr
 import { profileEditPasswordAction } from "../layers/pages/profile_editor/actions/profileEditPasswordAction";
 import { modulesListLoader } from "../layers/modules/modules_list/loaders/modulesListLoader";
 import { courseLoader } from "../layers/pages/course_page/loaders/courseLoader";
+import IndexPage from "../layers/pages/index_page/IndexPage";
 
 const router = createBrowserRouter([
   {
