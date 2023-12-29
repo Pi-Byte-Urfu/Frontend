@@ -1,0 +1,21 @@
+name: Docker Deployment
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /opt/app-backend/Frontend
+            git pull origin master
+            cd /opt/app-backend
+            docker compose up -d --build
