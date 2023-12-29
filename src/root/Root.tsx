@@ -7,7 +7,7 @@ import './RootDefault.css';
 
 const Root:FC = () => {
   return (
-    <div>
+    <div className='page'>
       <Header />
       <main className='main'>
         <Outlet />

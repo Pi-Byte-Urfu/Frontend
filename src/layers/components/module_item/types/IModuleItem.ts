@@ -1,4 +1,5 @@
+
 export interface IModuleItem {
   id: number,
-  name: string
+  name: string,
 }

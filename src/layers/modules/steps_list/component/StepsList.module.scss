@@ -1,0 +1,15 @@
+.list {
+  font-size: 18px;
+  width: 100%;
+}
+
+.item{
+  height: 56px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba($color: #6f6c6c, $alpha: 1.0);
+  }
+}

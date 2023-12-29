@@ -4,8 +4,9 @@ import { IProfileDataMain } from "../types/IProfileDataResponse";
 
 export async function profileEditDataAction({request}: IActionProps) {
   const formData = Object.fromEntries(await request.formData()) as any as IProfileDataMain
+  console.log(formData)
   const response = await updateProfileData(formData);
   if (response.status == 200) {
-    return response.data;
+    return formData;
   }
 }

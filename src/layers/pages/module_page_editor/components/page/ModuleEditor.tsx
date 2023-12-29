@@ -1,17 +1,19 @@
 import React, { FC, useEffect } from 'react';
 import style from './ModuleEditor.module.scss';
 import ModuleEditorNavigation from '../navigation/ModuleEditorNavigation';
-import { useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import { createContext } from 'vm';
+import { IModuleData } from '../../types/IModuleData';
 
 const ModuleEditor:FC = () => {
+  const moduleData = useLoaderData() as IModuleData;
 
   return (
     <div className={style.page}>
-      {/* <ModuleEditorNavigation navLinks={data.navLinks}/> */}
+      <ModuleEditorNavigation moduleName={moduleData.name}/>
       <div className={style.body}>
         <div className={style.bodyContainer}>
-          Описание модуля
+          <Outlet/>
         </div>
       </div>
     </div>

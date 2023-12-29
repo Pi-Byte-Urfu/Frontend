@@ -1,5 +1,10 @@
 .nav {
-  flex: 0 0 300px;
+  flex: 0 0 420px;
+  border-right: 2px solid rgba(248, 249, 252, 1);
+}
+
+.navHeader {
+  padding: 0 20px;
 }
 
 .createLinkForm {
@@ -33,4 +38,34 @@
       }
     }
   }
+}
+
+.saveName {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba($color: #ffffff, $alpha: 0.0);
+  padding: 5px;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background-color: white;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    border: 1px solid rgba($color: #ffffff, $alpha: 1);
+    background-color: rgba(101, 123, 255, 0.7);
+  }
+}
+
+.nameForm {
+  margin-bottom: 57px;
+  position: relative;
 }

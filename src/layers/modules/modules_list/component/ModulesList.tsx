@@ -12,13 +12,13 @@ const ModulesList:FC = () => {
       fetcher.load(`/modulesList/${courseId}`, {})
     }
   });
-  
+
   return (
     <ul className={style.list}>
       {
         fetcher.data && (
-          fetcher.data.modules.map(moduleItem => 
-            <li className={style.link} key={moduleItem.id}>
+          fetcher.data.courseChapters.map(moduleItem => 
+            <li className={style.item} key={moduleItem.id}>
               <ModuleItem item={moduleItem}/>
             </li>  
           )

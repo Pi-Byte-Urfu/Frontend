@@ -34,7 +34,9 @@ const Header:FC = observer(() => {
       }
       <div className={[style.headerContainer, "_container"].join(' ')}>
         <div className={style.logo}>
-          Логотип/Название
+          <Link to={'/'} className={style.logoLink}>
+            <img src={require('./img/logo-icon.svg').default} alt='logo' className={style.logoImg}/>
+          </Link>
         </div>
         <div className={style.links}>
           <SiteNav styles={[style.nav]}/>
