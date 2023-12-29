@@ -1,7 +1,19 @@
 .page {
   display: flex;
+  padding-top: 50px;
+  flex-grow: 1;
 }
 
 .body {
-  
+  padding: 0 42px;
+  flex-grow: 1;
+}
+
+
+.bodyContainer {
+  margin: 0 auto;
+  background-color: rgba(248, 249, 252, 1);
+  padding: 45px 42px;
+  border-radius: 8px;
+  height: 100%;
 }

@@ -1,15 +1,22 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import style from './ModulePageNavigation.module.scss';
+import StepsList from '../../../../modules/steps_list/component/StepsList';
 
-const ModulePageNavigation:FC = () => {
+interface IModulePageNavigationProps {
+  moduleName: string
+}
+
+const ModulePageNavigation:FC<IModulePageNavigationProps> = ({moduleName}) => {
+
   return (
-    <ul>
-      <li>
-        <Link to='step/1'>
-          step 1
-        </Link>
-      </li>
-    </ul>
+    <div className={style.nav}>
+      <div className={style.navHeader}>
+        <h1 className={style.moduleName}>
+          {moduleName}
+        </h1>
+      </div>
+      <StepsList/>
+    </div>
   );
 };
 

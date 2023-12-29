@@ -1160,6 +1160,7 @@ img, video {
   font-weight: 400;
 }
 .prose .italic {
+  display: revert;
   font-style: italic;
 }
 .prose .leading-5 {
@@ -1327,3 +1328,7 @@ img, video {
 .prose .\[\&_svg\]\:inline svg {
   display: inline;
 }/*# sourceMappingURL=MDXEditorText.module.css.map */
+
+._underline_1xkrx_18 {
+  text-decoration: underline;
+}

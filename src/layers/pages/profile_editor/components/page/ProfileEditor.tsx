@@ -12,6 +12,7 @@ import { IProfileDataResponse } from '../../types/IProfileDataResponse';
 const ProfileEditor:FC = () => {
   const store = useContext(AuthContext);
   const userData = useLoaderData() as IProfileDataResponse;
+
   return (
     <section className={style.profile}>
       <div className={style.profileContaier}>
@@ -21,9 +22,8 @@ const ProfileEditor:FC = () => {
           </h2>
           <div className={style.dataBody}>
           <UploaderImg 
-            accept='image/*' 
             photoAlt='avatar' 
-            targetPath={userData.photoUrl} 
+            targetPath={`accounts/${store.user?.id}/photo`} 
             styles={[style.uploadAvatar]}
           />
           {

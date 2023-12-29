@@ -3,14 +3,15 @@ import style from './UploaderImg.module.scss';
 import { IBaseComponentProps } from '../../../../types/IBaseComponentProps';
 import { sendPhoto } from '../api/sendPhoto';
 import axios from 'axios';
+import { API_URL } from '../../../../http';
 
 interface IUploaderImgProps extends IBaseComponentProps {
-  accept: string,
   photoAlt: string,
   targetPath: string
 }
 
-const UploaderImg: FC<IUploaderImgProps> = ({ accept, photoAlt, styles, targetPath }) => {
+const UploaderImg: FC<IUploaderImgProps> = ({ photoAlt, styles, targetPath }) => {
+  targetPath = API_URL + targetPath;
   const img = useRef<HTMLImageElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const [errorMessage, setErrorMessage] = useState<string| null>(null);
@@ -25,6 +26,7 @@ const UploaderImg: FC<IUploaderImgProps> = ({ accept, photoAlt, styles, targetPa
       const response = await sendPhoto(formData, targetPath);
 
       if (response.status == 200 && img.current != null) {
+        console.log('200')
         img.current.src = targetPath
       }
     }
@@ -34,11 +36,11 @@ const UploaderImg: FC<IUploaderImgProps> = ({ accept, photoAlt, styles, targetPa
 
   return (
     <div className={[style.container, ...styles].join(' ')}>
-      <div className={[style.imgContainer, ...styles].join(' ')}>
+      <div className={[style.imgContainer].join(' ')}>
         <img ref={img} className={style.preview} alt={photoAlt} src={targetPath} />
         <input
           className={style.input}
-          type='file' accept={accept}
+          type='file' accept={'image/*'}
           onChange={uploadHandler}
           ref={fileInput}
         />

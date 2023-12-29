@@ -3,19 +3,9 @@ import { IProfileDataMain } from "../types/IProfileDataResponse";
 
 export async function updateProfileData(formData: IProfileDataMain) {
   try {
-  //const response = $api.post('', JSON.stringify(formData))
-  const response =  {
-    status: 200,
-    data: {
-      name: 'stas',
-      surname: '',
-      patronymic: '',
-      email: '',
-    }
-  }
+  const response = $api.patch('accounts/user', formData)
 
-  return response;
-  return     
+  return response;   
   } catch(e: any) {
     return e.response
   }

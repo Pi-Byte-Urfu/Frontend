@@ -15,29 +15,28 @@ interface ITeacherFormProps {
 
 const TeacherForm:FC<ITeacherFormProps>= ({defaultData}) => {
   const fetcher = useFetcher<IProfileDataMain>();
-  console.log(fetcher.data)
+
   return (
     <fetcher.Form method='POST' className={rootStyles.dataForm} action='editData'>
       <div className={rootStyles.formFields}>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Имя'>
           <Input type='text' name='name' placeholder='Имя' 
-          defaultValue={fetcher.data == null? defaultData.name : fetcher.data?.name} 
+          defaultValue={fetcher.data ?? defaultData.name} 
           styles={[rootStyles.input]}/>
         </FormField>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Фамлия'>
           <Input type='text' name='surname' placeholder='Фамилия' styles={[rootStyles.input]}
-            defaultValue={fetcher.data == null ? defaultData.surname : fetcher.data.surname} 
+            defaultValue={fetcher.data ?? defaultData.surname} 
           />
         </FormField>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Отчество'>
           <Input type='text' name='patronymic' placeholder='Отчество' styles={[rootStyles.input]}
-            defaultValue={fetcher.data == null ? defaultData.patronymic: fetcher.data.patronymic}
+            defaultValue={fetcher.data ?? defaultData.patronymic}
           />
         </FormField>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Email'>
-          <Input type='email' name='email' placeholder='Почта' styles={[rootStyles.input]}
-          defaultValue={fetcher.data == null ? defaultData.email : fetcher.data.email}
-          disabled={false}
+          <Input type='text' styles={[rootStyles.input]} disabled={true}
+            defaultValue={defaultData.email}
           />
         </FormField>
       </div>

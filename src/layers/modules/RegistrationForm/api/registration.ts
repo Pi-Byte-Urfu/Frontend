@@ -11,6 +11,7 @@ interface IRegistrationResponse {
 
 export async function registration(data: IRegistrationData) {
   try{
+    console.log(data)
     const response = await $api.post<IRegistrationResponse>('/users/register', JSON.stringify(data))
     console.log(response)
     return response;

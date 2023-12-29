@@ -1,9 +1,13 @@
+import { redirect } from "react-router-dom";
 import { IActionProps } from "../../../../types/IActionProps";
-import { getCourse } from "../api/getCourse";
-import { ICourseData } from "../types/ICourseData";
+import { getCourse } from "../../course_page_editor/api/getCourse";
 
-export async function courseLoader({ params }: IActionProps):Promise<ICourseData> {
-  const response = await getCourse(params.courseId);
+export async function courseLoader({ params }: IActionProps) {
+  const response = await getCourse(params.courseId)
+  console.log(response);
+  if (response.status == 200) {
+    return response.data
+  }
 
-  return response;
+  return redirect('/');
 }

@@ -1,0 +1,31 @@
+.nav {
+  flex: 0 0 420px;
+  padding-top: 24px;
+  border-right: 2px solid white;
+}
+
+.navHeader {
+  padding: 0 20px;
+  margin-bottom: 57px;
+}
+
+.courseName {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(248, 249, 252, 1)
+}
+
+.courseCover {
+  height: 180px;
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.courseCoverImg {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+

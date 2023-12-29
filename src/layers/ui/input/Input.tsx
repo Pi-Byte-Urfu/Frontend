@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
+import React, { FC, FocusEventHandler, PropsWithChildren, useEffect, useState } from 'react';
 import style from './Input.module.scss';
 import { IValidateResponse } from './IValidateResponse';
 import { Value } from 'sass';
@@ -13,9 +13,12 @@ interface IInputProps {
   validateInput?: (value: string) => IValidateResponse
   setFormStatus?: (currentState: boolean) => void,
   disabled?: boolean
+  checked?: boolean,
+  onFocus?: () => void
+  onBlur?: () => void
 }
 
-const Input:FC<PropsWithChildren<IInputProps>> = ({type, styles, name, placeholder, defaultValue, form, validateInput, setFormStatus, children}) => {
+const Input:FC<PropsWithChildren<IInputProps>> = ({type, styles, name, placeholder, defaultValue, form, validateInput, setFormStatus, children, checked, onFocus, onBlur, disabled}) => {
   const [value, setValue] = useState<any>(defaultValue);
   const classNames = styles.join(' ')
   const [validateResponse, setValidateResponse] = useState<IValidateResponse>({isValidate: true, message: null});
@@ -30,6 +33,7 @@ const Input:FC<PropsWithChildren<IInputProps>> = ({type, styles, name, placehold
     <div className={style.container}>
       <div className={style.inputContainer}>
         <input 
+          checked={checked}
           type={type} 
           className={classNames} 
           onChange={(ev) => {
@@ -44,6 +48,8 @@ const Input:FC<PropsWithChildren<IInputProps>> = ({type, styles, name, placehold
           placeholder={placeholder}
           name={name}
           form={form}
+          onFocus={onFocus}
+          disabled={disabled}
           />
           {children}        
       </div>

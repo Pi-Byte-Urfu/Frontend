@@ -1,5 +1,5 @@
 
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Root from "../root/Root";
 import ProfilePage from "../layers/pages/profile_page/components/page/ProfilePage";
 import { loginAction } from "../layers/modules/login_form/actions/LoginAction";
@@ -10,7 +10,6 @@ import GroupList from "../layers/modules/groups_list/components/GroupList";
 import QuestionsList from "../layers/modules/questions_list/components/QuestionsList";
 import { coursesListLoader } from "../layers/modules/courses_list/loaders/CoursesListLoader";
 import CoursePage from "../layers/pages/course_page/components/page/CoursePage";
-import CourseIndexPage from "../layers/pages/course_page/components/index_page/CourseIndexPage";
 import ModulePage from "../layers/pages/module_page/components/page/ModulePage";
 import ModulePageIndex from "../layers/pages/module_page/components/index/ModulePageIndex";
 import Step from "../layers/modules/step/components/step/Step";
@@ -30,6 +29,15 @@ import { profileEditPasswordAction } from "../layers/pages/profile_editor/action
 import { modulesListLoader } from "../layers/modules/modules_list/loaders/modulesListLoader";
 import { courseLoader } from "../layers/pages/course_page/loaders/courseLoader";
 import IndexPage from "../layers/pages/index_page/IndexPage";
+import { stepsListLoader } from "../layers/modules/steps_list/loaders/stepsListLoader";
+import ChoiceStep from "../layers/pages/module_page_editor/components/choice_step/ChoiceStep";
+import { updateCourseAction } from "../layers/pages/course_page_editor/actions/updateCourseAction";
+import { updateModuleAction } from "../layers/pages/module_page_editor/actions/updateModuleAction";
+import { theoryLoader } from "../layers/pages/module_page_editor/components/thoery_editor/loaders/theoryLoader";
+import { updateTheoryAction } from "../layers/pages/module_page_editor/actions/updateTheoryAction";
+import TheoryEditor from "../layers/pages/module_page_editor/components/thoery_editor/component/TheoryEditor";
+import TestEditor from "../layers/pages/module_page_editor/components/test_editor/component/TestEditor";
+import Theory from "../layers/pages/module_page/components/theory/Theory";
 
 const router = createBrowserRouter([
   {
@@ -79,11 +87,11 @@ const router = createBrowserRouter([
       {
         path: '/course/:courseId',
         element: <CoursePage />,
-      },
-      {
-        path: '/course/:courseId/description',
         loader: courseLoader
       },
+
+      // CourseEditor **********************************
+
       {
         path: '/courseEditor/:courseId',
         element: <CourseEditor />,
@@ -92,36 +100,68 @@ const router = createBrowserRouter([
           {
             path: 'createModule',
             action: createModuleAction,
-          },
+          },{
+            path: 'updateCourse',
+            action: updateCourseAction
+          }
         ]
       },
+
+      // ModuleEditor ***************************************************
+
       {
-        path: 'courseEditor/:courseId/module/:moduleId',
+        path: 'courseEditor/:courseId/module/:moduleId/',
         element: <ModuleEditor />,
         loader: moduleEditorLoader,
+        children: [
+          {
+            path: 'choiceStep',
+            element: <ChoiceStep/>,
+          },
+          {
+            path: 'updateModule',
+            action: updateModuleAction,
+          },
+          {
+            path: 'step/0/:stepId',
+            loader: theoryLoader,
+            element: <TheoryEditor/>,
+            children: [
+              {
+                path: 'update',
+                action: updateTheoryAction
+              }
+            ]
+          },
+          {
+            path: 'step/1/:stepId',
+            element: <TestEditor/>
+          }
+        ]
       },
       {
         path: 'courseEditor/:courseId/module/:moduleId/createStep',
         action: createStepAction
       },
+
+      // Module
+
       {
-        path: '/course/:id/module/:id',
+        path: '/course/:courseId/module/:moduleId',
         element: <ModulePage />,
+        loader: moduleEditorLoader,
         children: [
           {
             index: true,
             element: <ModulePageIndex />
           },
           {
-            path: 'step/:id',
-            element: <Step />
+            path: 'step/0/:stepId',
+            element: <Theory/>,
+            loader: theoryLoader
           }
         ]
       },
-      {
-        path: '/textEditor',
-        element: <MDXEditorText/>
-      }
     ]
   },
   {
@@ -140,6 +180,10 @@ const router = createBrowserRouter([
   {
     path: '/modulesList/:courseId',
     loader: modulesListLoader,
+  },
+  {
+    path: '/stepsList/:moduleId',
+    loader: stepsListLoader,
   }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 ])
 
