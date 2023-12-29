@@ -16,7 +16,7 @@ jobs:
           port: 22
           script: |
             cd /opt/app-backend/Frontend
-            git pull origin master
+            git pull origin main
             cd /opt/app-backend
             docker compose down
             docker compose up -d --build
