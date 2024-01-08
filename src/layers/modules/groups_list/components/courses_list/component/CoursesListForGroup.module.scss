@@ -1,0 +1,83 @@
+.message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(101, 123, 255, 1);
+  padding-top: 24px;
+}
+
+.coursesList {
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  flex: 0 0 100%;
+  border-radius: 8px;
+  border: 1px solid;
+  overflow: hidden;
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 25px;
+  }
+
+  &:hover .itemOverlay {
+    display: flex;
+    cursor: pointer;
+  }
+}
+
+.courseCover {
+  position: relative;
+  padding-bottom: 50%;
+  width: 100%;
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.courseName {
+  padding: 10px 2px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: rgba(248, 249, 252, 1);
+  color: black;
+}
+
+.itemOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.overlayLink {
+  flex: 0 0 50%;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  padding: 0 15px;
+  font-size: 18px;
+
+  &:hover {
+    background-color: rgba(19, 20, 21, 0.8)
+  }
+}

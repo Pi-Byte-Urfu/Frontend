@@ -12,7 +12,7 @@ interface ICourseItemProps {
 const CourseItem: FC<ICourseItemProps> = ({id, title, coverURL}) => {
   return (
     <li className={style.course}>
-      <Link to={`/course/1`} onClick={ev => console.log('click')}>
+      <Link to={`/course/${id}`} onClick={ev => console.log('click')}>
         <img className={style.courseCover} src={coverURL} alt='f' />
         <div className={style.itemOverlay}>
           <Button type="button" styles={[style.removeBtn]} onClick={ev => {

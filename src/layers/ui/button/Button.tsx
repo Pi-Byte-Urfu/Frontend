@@ -1,22 +1,19 @@
 import react, { ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren } from 'react';
+import style from './Button.module.scss';
 
 interface ButtonProps {
   type: 'reset' | 'submit' | 'button' | undefined
-  styles?: string[]
+  styles: string[]
   onClick?: (ev: React.MouseEvent<HTMLButtonElement>) => void,
   disabled?: boolean
 }
 
 const Button: FC<PropsWithChildren<ButtonProps>> = ({type, onClick, styles, children, disabled}) => {
-  let classNames;
-  if (styles != undefined) {
-    classNames = styles.join(' ');
-  }
-  
+
   return (
     <button
       type={type}
-      className = {classNames}
+      className = {[...styles].join(' ')}
       onClick={onClick}
       disabled={disabled}
     >

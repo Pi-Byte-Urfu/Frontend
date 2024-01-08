@@ -1,4 +1,9 @@
 
 .profile {
   padding: 140px 0 0 0;
+  flex-grow: 1;
+}
+
+.profileContainer {
+  min-height: 100%;
 }

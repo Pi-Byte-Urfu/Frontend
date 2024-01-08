@@ -13,4 +13,8 @@
   &:hover {
     background-color: rgba($color: #6f6c6c, $alpha: 1.0);
   }
+
+  &:hover button {
+    display: flex;
+  }
 }

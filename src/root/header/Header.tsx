@@ -71,7 +71,7 @@ const Header:FC = observer(() => {
                 <ul className={style.profileMenuList}>
                   <li className={style.profileMenuItem}>
                     <Form method='POST' action='logout'>
-                      <Button type='submit'>
+                      <Button type='submit' styles={[]}>
                         Выйти
                       </Button>
                     </Form>

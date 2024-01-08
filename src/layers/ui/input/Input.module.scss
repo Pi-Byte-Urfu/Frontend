@@ -45,7 +45,23 @@
 }
 
 .courseName {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
-  color: rgba(248, 249, 252, 1)
+  color: rgba(248, 249, 252, 1);
+  background-color: transparent;
+  border: 1px solid rgba(248, 249, 252, 0);
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  height: 100%;
+  padding-right: 35px;
+
+  &:focus {
+    border: 1px solid rgba(248, 249, 252, 1);
+  }
+}
+
+.newItemForm {
+  font-size: 18px;
+  
 }

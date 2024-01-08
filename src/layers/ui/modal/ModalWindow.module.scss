@@ -8,7 +8,8 @@
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
-  
+  z-index: 99;
+
   &.active {
     display: flex;
     justify-content: center;
@@ -29,7 +30,7 @@
   height: 25px;
   width: 25px;
   cursor: pointer;
-  
+  z-index: 100;
   &:hover div{
     background-color: red;
   }

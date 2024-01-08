@@ -36,7 +36,7 @@ const TeacherPageHeader:FC = () => {
       <ul className={style.toolPanel}>
         <li className={style.toolPanelItem}>
           <Form method='POST' action='/createCourse' className={style.createCourseForm}>
-            <Button type='submit'>
+            <Button type='submit' styles={[style.createBtn]}>
               <span className={style.plus}>+</span> cоздать курс
             </Button>
           </Form>

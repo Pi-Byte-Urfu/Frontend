@@ -11,7 +11,7 @@ const Modal:FC<PropsWithChildren<IModalProps>> = ({visible, setVisible, children
   const store = useContext(AuthContext);
   let classNames = [style.modalWindow];
 
-  if (visible && !store.user) {
+  if (visible) {
     classNames.push(style.active)
   }
 

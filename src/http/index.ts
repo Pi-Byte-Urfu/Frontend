@@ -1,5 +1,7 @@
 import axios from "axios"
 import { store } from ".."
+import { error } from "console";
+import { redirect } from "react-router-dom";
 
 export const API_URL = 'http://5.23.54.98:8080/api/v1/'
 const API_URL2= 'https://jsonplaceholder.typicode.com/';
@@ -31,8 +33,18 @@ $api2.interceptors.request.use((config) => {
   return config;
 })
 
+
 $api.interceptors.request.use((config) => {
   config.headers["AuthInfo"] = JSON.stringify(store.user)
   return config;
 })
 
+$api.interceptors.response.use(
+  (res) => res,
+  (error) => {
+    console.log(error)
+    if (error.status >= 500) {
+      return redirect('/ServerErrorPage');
+    }
+  }
+)

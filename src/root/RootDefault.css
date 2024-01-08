@@ -28,6 +28,18 @@ body {
 }
 
 button, a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: 0.3s;
+  background-color: transparent;
+}
+
+input {
+  
+}
+
+input:focus {
+  outline: none;
 }

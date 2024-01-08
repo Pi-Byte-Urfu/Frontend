@@ -7,6 +7,7 @@ import CourseNavigation from '../../../course_page/components/navigation/CourseN
 import ModulesList from '../../../../modules/modules_list/component/ModulesList';
 import UploaderImg from '../../../../components/uploader_img/components/UploaderImg';
 import inputStyles from '../../../../ui/input/Input.module.scss';
+import formStyles from '../../../../../root/scss/Form.module.scss';
 
 interface ICourseEditorNavigationProps {
   courseName: string
@@ -37,15 +38,14 @@ const CourseEditorNavigation:FC<ICourseEditorNavigationProps> = ({courseName}) =
         </fetcher.Form>
       </div>
       <ModulesList/>
-      <Form method='POST' action='createModule' className={style.createLinkForm}>
+      <Form method='POST' action='createModule' className={formStyles.createEntityForm}>
         <input
           name="name" 
           type='text' defaultValue={''} 
-          placeholder='Новый модуль'
-          className={[style.moduleNameInput].join(' ')}  
+          placeholder='Новый модуль' 
         />
         <Button 
-          styles={[style.createNavLinkBtn]} 
+          styles={[]} 
           type='submit'
         >
           <span className={style.plus}>+</span>

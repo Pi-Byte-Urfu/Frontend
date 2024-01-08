@@ -1,18 +1,29 @@
 import React, { FC } from 'react';
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData, useLocation, useParams } from 'react-router-dom';
 import style from './CoursePage.module.scss';
 import CourseNavigation from '../navigation/CourseNavigation';
 import { ICourseData } from '../../../course_page_editor/types/ICourseData';
 import MDXContent from '../../../../modules/mdx/mdx_content/components/content/MDXContent';
-
+import changeModeBtnStyles from '../../../../../root/scss/ChangeMode.module.scss';
+import { Link } from 'react-router-dom';
+import { store } from '../../../../..';
+import { UserType } from '../../../../../types/userType';
 const CoursePage:FC = () => {
   const courseData = useLoaderData() as ICourseData;
-
+  const { courseId } = useParams();
+  const location = useLocation();
+  
   return (
     <div className={style.page}>
       <CourseNavigation courseName={courseData.name ?? ''}/>
       <div className={style.description}>
         <div className={style.descriptionContainer}>
+        {
+            store.user?.userType == UserType.teacher && 
+          <Link to={location.pathname.replace('course', 'courseEditor')} className={changeModeBtnStyles.link}>
+            режим редактирования
+          </Link>
+          }
           <h2 className={style.title}>
             Описание курса
           </h2>

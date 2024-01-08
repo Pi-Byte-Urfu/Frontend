@@ -1,0 +1,28 @@
+
+.groupList {
+
+}
+
+.groupListContainer {
+  display: flex;
+  align-items: stretch;
+}
+
+.sideBar {
+  flex: 0 0 300px;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+form.createGroupForm {
+  margin-bottom: 20px;
+  input {
+   &:focus {
+    border: none;
+    border-bottom: 1px solid white;
+   } 
+  }
+  
+}

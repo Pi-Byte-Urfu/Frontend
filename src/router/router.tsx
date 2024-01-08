@@ -5,8 +5,7 @@ import ProfilePage from "../layers/pages/profile_page/components/page/ProfilePag
 import { loginAction } from "../layers/modules/login_form/actions/LoginAction";
 import { registrationAction } from "../layers/modules/RegistrationForm/actions/RegistrationAction";
 import { logoutAction } from "../root/header/logoutAction";
-import CoursesList from "../layers/modules/courses_list/components/CoursesList";
-import GroupList from "../layers/modules/groups_list/components/GroupList";
+import CoursesList from "../layers/modules/courses_list/components/CoursesList"
 import QuestionsList from "../layers/modules/questions_list/components/QuestionsList";
 import { coursesListLoader } from "../layers/modules/courses_list/loaders/CoursesListLoader";
 import CoursePage from "../layers/pages/course_page/components/page/CoursePage";
@@ -38,15 +37,31 @@ import { updateTheoryAction } from "../layers/pages/module_page_editor/actions/u
 import TheoryEditor from "../layers/pages/module_page_editor/components/thoery_editor/component/TheoryEditor";
 import TestEditor from "../layers/pages/module_page_editor/components/test_editor/component/TestEditor";
 import Theory from "../layers/pages/module_page/components/theory/Theory";
+import { getTestLoader } from "../layers/pages/module_page_editor/components/test_editor/loaders/getTestLoader";
+import { updateTestAction } from "../layers/pages/module_page_editor/components/test_editor/actions/updateTestAction";
+import Groups from "../layers/modules/groups_list/components/page/component/Groups";
+import ErrorPage from "../layers/pages/error_page/ErrorPage";
+import { createGroupActon } from "../layers/modules/groups_list/components/page/actions/createGroupAction";
+import { groupsListLoader } from "../layers/modules/groups_list/components/groups_list/loaders/groupsListLoader";
+import { groupInfoLoader } from "../layers/modules/groups_list/components/group_info/loader/groupInfoLoader";
+import GroupInfo from "../layers/modules/groups_list/components/group_info/component/GroupInfo";
+import { groupConnectAction } from "../layers/modules/groups_list/components/connect/action/groupConnectAction";
+import GroupConnect from "../layers/modules/groups_list/components/connect/component/GroupConnect";
+import GroupsIndex from "../layers/modules/groups_list/components/index/GroupsIndex";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
         element: <IndexPage />
+      },
+      {
+        path: 'ErrorPage',
+        element: <ErrorPage/>
       },
       {
         path: 'profile/:userId',
@@ -63,7 +78,25 @@ const router = createBrowserRouter([
           },
           {
             path: 'groups/',
-            element: <GroupList />
+            element: <Groups/>,
+            children: [
+              {
+                index: true,
+                element: <GroupsIndex/>
+              },
+              {
+                path: 'createGroup',
+                action: createGroupActon,
+              },
+              {
+                path: 'updateGroup',
+              },
+              {
+                path: 'info/:groupId',
+                loader: groupInfoLoader,
+                element: <GroupInfo/>
+              }
+            ]
           }
         ]
       },
@@ -135,7 +168,14 @@ const router = createBrowserRouter([
           },
           {
             path: 'step/1/:stepId',
-            element: <TestEditor/>
+            element: <TestEditor/>,
+            loader: getTestLoader,
+            children: [
+              {
+                path: 'update',
+                action: updateTestAction,
+              }
+            ]
           }
         ]
       },
@@ -184,7 +224,16 @@ const router = createBrowserRouter([
   {
     path: '/stepsList/:moduleId',
     loader: stepsListLoader,
-  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+  },
+  {
+    path: '/groupsList/:teacherId',
+    loader: groupsListLoader,
+  }, 
+  {
+    path: '/groups/connect/:groupId',
+    element: <GroupConnect/>,
+    action: groupConnectAction,
+  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 ])
 
 export default router;

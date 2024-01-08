@@ -7,6 +7,7 @@ import Input from '../../../../ui/input/Input';
 import { Link } from 'react-router-dom';
 import inputStyles from '../../../../ui/input/Input.module.scss';
 import { IModuleData } from '../../types/IModuleData';
+import formStyles from '../../../../../root/scss/Form.module.scss';
 
 interface IModuleEditorNavigationProps {
   moduleName: string
@@ -24,7 +25,7 @@ const ModuleEditorNavigation:FC<IModuleEditorNavigationProps> = ({moduleName}) =
           <input type={'text'} 
             defaultValue={fetcher.data?.name ?? moduleName} 
             name={"name"} 
-            placeholder='Измените название курса' 
+            placeholder='Измените название модуля' 
             className={inputStyles.courseName}
             />
             <button type='submit' className={style.saveName}>
@@ -33,7 +34,7 @@ const ModuleEditorNavigation:FC<IModuleEditorNavigationProps> = ({moduleName}) =
         </fetcher.Form>
       </div>
       <StepsList/>
-      <Form method='POST' action='createStep' className={style.createLinkForm} id="createStep">
+      <Form method='POST' action='createStep' className={formStyles.createEntityForm} id="createStep">
         <input
           name="name" 
           type='text' defaultValue={''} 

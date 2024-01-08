@@ -19,15 +19,17 @@ interface IInputProps {
 }
 
 const Input:FC<PropsWithChildren<IInputProps>> = ({type, styles, name, placeholder, defaultValue, form, validateInput, setFormStatus, children, checked, onFocus, onBlur, disabled}) => {
-  const [value, setValue] = useState<any>(defaultValue);
+  const [value, setValue] = useState<any>();
   const classNames = styles.join(' ')
+  
   const [validateResponse, setValidateResponse] = useState<IValidateResponse>({isValidate: true, message: null});
 
   useEffect(() => {
+    setValue(defaultValue)
     return () => {
       setValue(defaultValue)
     }
-  }, [])
+  }, [defaultValue])
 
   return (
     <div className={style.container}>

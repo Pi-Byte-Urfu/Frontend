@@ -11,12 +11,12 @@ const TheoryEditor = () => {
   const fetcher = useFetcher<ITheoryData>();
   const location = useLocation();
   useEffect(() => {
-    if (fetcher.state == 'idle' && stepId != undefined) {
-      fetcher.load(location.pathname)
+    if (fetcher.state == 'idle') {
+      fetcher.load(location.pathname);
     }
+    
   }, [stepId])
   const formRef = useRef<HTMLFormElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const updateContentHandler = async (markdown: string) => 
   {
@@ -32,20 +32,14 @@ const TheoryEditor = () => {
         action='update'
         method='POST' ref={formRef} 
       >
-        <input className={style.titleInput} 
-          ref={inputRef}
+        <Input styles={[style.titleInput]} 
           type='text' 
           name='name' 
           placeholder={"Измените имя step'a"}
           defaultValue={fetcher.data?.name}
-          onBlur={() => {
-            
-            if (btnRef.current != null) {
-              btnRef.current.click();
-            }
-          }}
           />
-          <button type='submit' className={style.nameBtn} ref={btnRef}>
+          <button type='submit' className={style.nameBtn} ref={btnRef} style={{color: 'black'}}>
+            save
           </button>
       </fetcher.Form>
       <MDXEditorText defaultMarkdown={fetcher.data?.content ?? ''} actionPath={'update'} inputName={'content'}/>

@@ -93,10 +93,10 @@ const RegistrationForm: FC<IRegistrationProps> = ({ activeModal, setActiveModal,
             <div className={style.footer}>
               <div className={style.footerLabel}>
                 Уже есть аккаунт?
-                <Button type="submit" styles={[style.redirectLink, btnStyles.redirectModalBtn]} onClick={() => setActiveModal('login')}
+                <button type="button" className={[style.redirectLink, btnStyles.redirectModalBtn].join(' ')} onClick={() => setActiveModal('login')}
                 >
                   Войти
-                </Button>
+                </button>
               </div>
             </div>
           </div>

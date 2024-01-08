@@ -40,6 +40,7 @@
 
 .formField:not(:last-of-type) {
   margin-bottom: 22px;
+  display: block;
 }
 
 .formButtons {
@@ -56,11 +57,12 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
-}
 
-.redirectLink {
-  color: rgba(101, 123, 255, 1);
-  padding-left: 3px;
+  .redirectLink {
+    color: rgba(101, 123, 255, 1);
+    padding-left: 3px;
+    display: inline-block;
+  }
 }
 
 .registerContainerContent {

@@ -1,5 +1,7 @@
 export interface ICourseItem {
-  id: number,
-  title: string,
-  coverURL: string
+  id: number
+  name: string
+  coursePhoto: string,
+  description: string
+  creatorId: number
 }

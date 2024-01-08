@@ -10,7 +10,7 @@ const CoursesList:FC = () => {
 
   return (
     <ul className={style.list}>
-      { courses.map(course => <CourseItem id={course.id} title={course.title} coverURL={course.coverURL} key={course.id}/>)}
+      { courses.map(course => <CourseItem id={course.id} title={course.name} coverURL={course.coursePhoto} key={course.id}/>)}
     </ul>
   );
 };

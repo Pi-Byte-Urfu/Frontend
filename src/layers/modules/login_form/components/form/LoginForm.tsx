@@ -32,7 +32,7 @@ const LoginForm:FC<ILoginForm> = ({activeModal, setActiveModal, setIsVisibleModa
         </h2>
             <fetcher.Form className={style.form} method='POST' action='/login'>
               <div className={style.formFields}>
-                <FormField styles={[style.formField, formFieldStyles.authFormField]}
+                <FormField styles={[formFieldStyles.authFormField, style.formField]}
                   textLabel='Почта'
                 >
                   <Input type='text' name='email' styles={[inputStyles.authInput]} placeholder='Введите почту' defaultValue=''

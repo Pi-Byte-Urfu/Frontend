@@ -12,9 +12,13 @@
 
 .toolPanelItem {
   height: 30px;
-  background-color: rgba(101, 123, 255, 1);
-  border-radius: 8px;
+
   button {
+    background-color: rgba(101, 123, 255, 1);
+    border-radius: 8px;
+    height: 30px;
+    background-color: rgba(101, 123, 255, 1);
+    border-radius: 8px;
     display: block;
     color: rgba(248, 249, 252, 1);
     font-weight: 500;

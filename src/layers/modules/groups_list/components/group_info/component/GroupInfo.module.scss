@@ -1,0 +1,101 @@
+
+.info {
+  border: 1px solid rgba(248, 249, 252, 1);
+  border-radius: 10px;
+  width: 100%;
+  padding-top: 24px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 19px;
+}
+
+.linkConnect {
+  font-size: 20px;
+}
+
+
+.studentsList {
+  padding-bottom: 24px;
+}
+
+.coursesList {
+  border-left: 1px solid rgba(248, 249, 252, 1);
+  padding-bottom: 24px;
+}
+.studentsListContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.studentItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 19px;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.studentPhoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin-right: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: relative;
+  
+  img {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+}
+
+.itemContent {
+  font-size: 18px;
+}
+
+.body {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.columnName {
+  box-sizing: border-box;
+  text-align: center;
+  border-top: 1px solid rgba(248, 249, 252, 1);
+  border-bottom: 1px solid rgba(248, 249, 252, 1);
+  &:not(:first-child) {
+    border-left: 1px solid rgba(248, 249, 252, 1);
+  }
+  padding: 15px 0;
+  font-size: 18px;
+}
+
+.emptyList {
+  padding-top: 24px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: rgb(101, 123, 255);
+}

@@ -1,7 +1,17 @@
 
 .list {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 50px;
+  column-gap: calc((100% - 3* 31%) / 3);
+
+  @media (max-width: 1048px) {
+    flex: 0 0 48%;
+    column-gap: calc((100%  - 48% * 2) / 2);
+  }
+
+  @media (max-width: 735px) {
+    flex: 0 0 100%;
+    column-gap: 0;
+  }
 }

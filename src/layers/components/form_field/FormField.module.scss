@@ -17,3 +17,16 @@
     font-weight: 500;
   }
 }
+
+.defaultRadioColumn {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 10px;
+  .textLabel {
+    color: black;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+}

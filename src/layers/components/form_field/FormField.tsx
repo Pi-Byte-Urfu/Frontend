@@ -9,14 +9,12 @@ interface IFormFieldProps {
 const FormField:FC<PropsWithChildren<IFormFieldProps>> = ({textLabel, styles, children}) => {
   const classNames = styles.join(' ')
   return (
-    <div className={classNames}>
       <label className={classNames}>
         <div className={style.textLabel}>
           {textLabel}
         </div>
         {children}
       </label>      
-    </div>
   );
 };
 
