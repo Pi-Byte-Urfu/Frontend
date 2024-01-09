@@ -1,0 +1,32 @@
+
+.maxScore {
+  margin-bottom: 30px;
+  color: black;
+  font-size: 18px;
+}
+
+.maxScoreLabel {
+  margin-bottom: 10px;
+}
+
+.maxScoreInput {
+  background-color: rgb(26, 25, 25);
+  border-radius: 8px;
+  color: white;
+  padding: 7px 15px;
+}
+
+.titleInput {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  background-color: inherit;
+  color: rgb(21, 21, 21);
+}
+
+.titleForm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}

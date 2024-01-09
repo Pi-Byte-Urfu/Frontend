@@ -39,7 +39,7 @@ const GroupInfo:FC = () => {
       </Modal>
       <div className={style.header}>
         <p className={style.linkConnect}>
-          Ссылка для подключения к группе: /groups/connect/{groupId}
+          Ссылка для подключения к группе: http://5.23.54.98/groups/connect/{groupId}
         </p>
         <Button type='button' styles={[btnStyles.violetBtn]}
           onClick={() => {

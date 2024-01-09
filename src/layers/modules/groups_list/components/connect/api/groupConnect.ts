@@ -7,7 +7,6 @@ export async function groupConnect(groupId: number):Promise<AxiosResponse> {
       groupId: groupId
     }
     const response = await $api.post('groups/connect', data);
-
     return response
   } catch (error: any) {
     console.log(error.response)

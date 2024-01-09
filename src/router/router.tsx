@@ -48,6 +48,11 @@ import GroupInfo from "../layers/modules/groups_list/components/group_info/compo
 import { groupConnectAction } from "../layers/modules/groups_list/components/connect/action/groupConnectAction";
 import GroupConnect from "../layers/modules/groups_list/components/connect/component/GroupConnect";
 import GroupsIndex from "../layers/modules/groups_list/components/index/GroupsIndex";
+import TeacherRatePage from "../layers/pages/teacher_rate/components/page/component/TeacherRatePage";
+import TaskEditor from "../layers/pages/module_page_editor/components/task_editor/component/TaskEditor";
+import { updateTaskAction } from "../layers/pages/module_page_editor/components/task_editor/actions/updateTaskAction";
+import { taskLoader } from "../layers/pages/module_page_editor/components/task_editor/loader/taskLoader";
+import Task from "../layers/pages/module_page/components/task/component/Task";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +67,11 @@ const router = createBrowserRouter([
       {
         path: 'ErrorPage',
         element: <ErrorPage/>
+      },
+      {
+        path: 'teacherRate/groups/:groupId/courses/:courseId',
+        element: <TeacherRatePage/>,
+        loader: groupInfoLoader,
       },
       {
         path: 'profile/:userId',
@@ -176,6 +186,16 @@ const router = createBrowserRouter([
                 action: updateTestAction,
               }
             ]
+          }, {
+            path: 'step/2/:stepId',
+            loader: taskLoader,
+            element: <TaskEditor/>,
+            children: [
+              {
+                path: 'update',
+                action: updateTaskAction,
+              }
+            ]
           }
         ]
       },
@@ -199,6 +219,11 @@ const router = createBrowserRouter([
             path: 'step/0/:stepId',
             element: <Theory/>,
             loader: theoryLoader
+          }, 
+          {
+            path: 'step/2/:stepId',
+            element: <Task/>,
+            loader: taskLoader,
           }
         ]
       },

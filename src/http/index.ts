@@ -43,8 +43,10 @@ $api.interceptors.response.use(
   (res) => res,
   (error) => {
     console.log(error)
-    if (error.status >= 500) {
+    if (error.response.status >= 500) {
       return redirect('/ServerErrorPage');
     }
+
+    return error.response;
   }
 )

@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import style from './ModuleEditorNavigation.module.scss';
 import { Form, redirect, redirectDocument, useFetcher, useLoaderData, useNavigate } from 'react-router-dom';
 import Button from '../../../../ui/button/Button';
@@ -17,7 +17,15 @@ const ModuleEditorNavigation:FC<IModuleEditorNavigationProps> = ({moduleName}) =
   const navigate = useNavigate();
   const fetcher = useFetcher<IModuleData>(); 
   const formRef = useRef<HTMLFormElement>(null);
-
+  const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    return () => {
+      if (inputRef.current != null) {
+        console.log(inputRef.current.value)
+        inputRef.current.value = ''; 
+      } 
+    }
+  }, [])
   return (
     <div className={style.nav}>
       <div className={style.navHeader}>
@@ -43,6 +51,7 @@ const ModuleEditorNavigation:FC<IModuleEditorNavigationProps> = ({moduleName}) =
           onFocus={() => {
             navigate('choiceStep')
           }} 
+          ref={inputRef}
         />
         <Button
           styles={[style.createNavLinkBtn]} 

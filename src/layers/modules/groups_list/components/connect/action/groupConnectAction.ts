@@ -4,6 +4,7 @@ import { UserType } from "../../../../../../types/userType";
 import { groupConnect } from "../api/groupConnect";
 
 export async function groupConnectAction({params}: IActionProps) {
+  console.log('action')
   if (store.user?.userType == UserType.teacher) {
     return 'В группу могут быть добавлены только ученики';
   }

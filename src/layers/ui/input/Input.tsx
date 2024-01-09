@@ -27,6 +27,7 @@ const Input:FC<PropsWithChildren<IInputProps>> = ({type, styles, name, placehold
   useEffect(() => {
     setValue(defaultValue)
     return () => {
+      console.log(defaultValue)
       setValue(defaultValue)
     }
   }, [defaultValue])

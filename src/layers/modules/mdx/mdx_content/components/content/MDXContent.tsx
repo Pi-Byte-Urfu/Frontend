@@ -23,6 +23,7 @@ const MDXContent:FC<IMDXContentProps> = ({defaultMarkdown}) => {
         readOnly={true}
         className={['prose', style.prose].join(' ')}
         markdown={defaultMarkdown}
+        onChange={(text: string) => editor.current?.setMarkdown(defaultMarkdown)}
         ref={editor}
         plugins={
           [
