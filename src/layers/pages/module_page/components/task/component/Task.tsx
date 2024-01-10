@@ -3,11 +3,15 @@ import style from './Task.module.scss';
 import { useFetcher, useLocation, useParams } from 'react-router-dom';
 import { ITaskData } from '../../../../module_page_editor/components/task_editor/types/ITaskData';
 import MDXContent from '../../../../../modules/mdx/mdx_content/components/content/MDXContent';
+import { store } from '../../../../../..';
+import { UserType } from '../../../../../../types/userType';
+import FileUploader from '../../../../../components/file_uploader/FileUploader';
 
 const Task:FC = () => {
   const { stepId } = useParams();
   const fetcher = useFetcher<ITaskData>();
   const location = useLocation();
+  console.log(store.user?.userType)
   useEffect(() => {
     if (fetcher.state == 'idle' && stepId != undefined) {
       fetcher.load(location.pathname)
@@ -20,6 +24,14 @@ const Task:FC = () => {
         {fetcher.data?.name}
       </h2>
       <MDXContent defaultMarkdown={fetcher.data?.content ?? ''}/>
+      {
+        store.user?.userType == UserType.student && (
+        <div className={style.fileUploader}>
+          <FileUploader targetPath={`progress/answer/${stepId}`}/>
+        </div>          
+        )
+      }
+
     </div>
   );
 };

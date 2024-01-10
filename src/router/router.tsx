@@ -53,6 +53,9 @@ import TaskEditor from "../layers/pages/module_page_editor/components/task_edito
 import { updateTaskAction } from "../layers/pages/module_page_editor/components/task_editor/actions/updateTaskAction";
 import { taskLoader } from "../layers/pages/module_page_editor/components/task_editor/loader/taskLoader";
 import Task from "../layers/pages/module_page/components/task/component/Task";
+import { tasksListAction } from "../layers/pages/teacher_rate/components/tasks_list/actions/tasksListAction";
+import StudentProgressPage from "../layers/pages/student_progress_page/components/page/component/StudentProgressPage";
+import { studentProgressLoader } from "../layers/pages/student_progress_page/components/page/loaders/studentProgressLoader";
 
 const router = createBrowserRouter([
   {
@@ -69,9 +72,20 @@ const router = createBrowserRouter([
         element: <ErrorPage/>
       },
       {
+        path: 'studentProgress/:userId/course/:courseId',
+        element: <StudentProgressPage/>,
+        loader: studentProgressLoader,
+      },
+      {
         path: 'teacherRate/groups/:groupId/courses/:courseId',
         element: <TeacherRatePage/>,
         loader: groupInfoLoader,
+        children: [
+          {
+            path: 'newRate/:pageId/:userId',
+            action: tasksListAction,
+          }
+        ]
       },
       {
         path: 'profile/:userId',

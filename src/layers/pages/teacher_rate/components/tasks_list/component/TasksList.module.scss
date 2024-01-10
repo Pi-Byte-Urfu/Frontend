@@ -1,0 +1,53 @@
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+}
+
+.itemRate {
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  background-color: rgba(234, 236, 245, 1);
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.submitBtn {
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 5px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.scoreInput {
+  background-color: inherit;
+  color: black;
+  width: 45px;
+  text-align: center;
+}
+
+.linkStep, .fileLink {
+  color: rgba(155, 138, 251, 1);
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}

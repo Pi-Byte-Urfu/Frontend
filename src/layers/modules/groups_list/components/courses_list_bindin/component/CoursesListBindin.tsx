@@ -20,7 +20,6 @@ const CoursesListBindin:FC <CoursesListBindinProps> = ({setVisible}) => {
     }
   }, [groupId]);
 
-  console.log(coursesId)
   function toggleCourseId(courseId: number) {
     for (let id of coursesId) {
       if (courseId == id) {

@@ -1,0 +1,112 @@
+.rate {
+  padding-top: 80px;
+  flex: 1 0 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rateHeader {
+  margin-bottom: 30px;
+}
+
+.rateTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+}
+
+.container {
+  min-height: 100%;
+  flex: 1 0 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rateContent {
+  background-color: rgba(21, 21, 21, 1);
+  border: 1px solid rgba(248, 249, 252, 1);
+  border-radius: 8px;
+  padding: 20px;
+  flex: 1 0 100%;
+}
+
+.studentItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .itemHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.student {
+  display: flex;
+  align-items: center;
+}
+
+.studentPhoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin-right: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: relative;
+  
+  img {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+}
+
+.studentTasks {
+  margin-left: 50px;
+  flex: 0 0 100%;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.spoilerBtn {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  background: inherit;
+  margin-right: 10px;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../../../../../../static/icons/arrow-spoiler-icon.ico');
+    transition: 0.3s;
+  }
+
+  &.active::before {
+    transform: rotate(90deg);
+  }
+}

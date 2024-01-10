@@ -21,7 +21,7 @@ const CoursesListForGroup: FC = () => {
 
   async function fetchCourses(groupId: number) {
     const response = await getCoursesForGroup(groupId).then(
-      res => setCourses(res.data.courseList)
+      res => { setCourses(res.data.courseList);}
     ).catch(
       err => errorMessage = err.response.data.error_message
     );
@@ -45,7 +45,7 @@ const CoursesListForGroup: FC = () => {
                 {course.name}
               </div>
               <div className={style.itemOverlay}>
-                <Link to={''} className={style.overlayLink}>              
+                <Link to={`/teacherRate/groups/${groupId}/courses/${course.id}`} className={style.overlayLink}>              
                   Посмотреть прогресс учеников
                 </Link>
                 <button type={'button'} className={style.overlayLink}

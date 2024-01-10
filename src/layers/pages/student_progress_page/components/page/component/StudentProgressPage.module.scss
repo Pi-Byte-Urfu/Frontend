@@ -1,0 +1,95 @@
+.progress {
+  padding-top: 80px;
+  height: 489px;
+}
+
+.progressContainer {
+  background-color: rgba(248, 249, 252, 1);
+  border-radius: 12px;
+  width: 1434px;
+  padding: 30px 23px 0 23px;
+}
+
+.courseName {
+  font-size: 26px;
+  font-weight: 600;
+  color: black;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.column {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+  }
+
+  margin-bottom: 60px;
+}
+
+.progressLineTotal {
+  height: 4px;
+  width: 90%;
+  background-color: #f0eeed;
+  margin-bottom: 20px;
+}
+
+.progressLineStudent {
+  background-color: rgba(3, 152, 85, 1);
+  height: 100%;
+  position: relative;
+}
+
+.studentScoreCourse {
+  position: absolute;
+  transform: translate(50%, -100%);
+  top: -15px;
+  border-radius: 6px;
+  right: 0;
+  height: 30px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.studentTasks {
+  flex: 0 0 65%;
+  padding: 67px 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.backToCourseBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(19, 19, 19, 1);
+  color: rgba(248, 249, 252, 1);
+  padding: 8px 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
