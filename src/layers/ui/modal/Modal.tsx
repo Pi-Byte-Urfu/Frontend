@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useContext } from 'react';
+import React, { FC, PropsWithChildren, useContext, useEffect } from 'react';
 import { AuthContext } from '../../..';
 import style from './ModalWindow.module.scss';
 
@@ -14,7 +14,11 @@ const Modal:FC<PropsWithChildren<IModalProps>> = ({visible, setVisible, children
   if (visible) {
     classNames.push(style.active)
   }
-
+  useEffect(() => {
+    return () => {
+      setVisible(false)
+    }
+  }, [])
   return (
     <div className={classNames.join(' ')}>
       <div className={style.content}>

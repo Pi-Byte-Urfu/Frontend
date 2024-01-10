@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Form, useFetcher } from 'react-router-dom';
 import { IBaseComponentProps } from '../../../../../types/IBaseComponentProps';
 import rootStyles from '../page/ProfileEditor.module.scss';
@@ -15,23 +15,30 @@ interface ITeacherFormProps {
 
 const TeacherForm:FC<ITeacherFormProps>= ({defaultData}) => {
   const fetcher = useFetcher<IProfileDataMain>();
+  const [data, setData] = useState<IProfileDataResponse>(defaultData);
+
+  useEffect(() => {
+    if (fetcher.data) {
+      setData({...fetcher.data, email: defaultData.email} as IProfileDataResponse);
+    }
+  }, [fetcher]);
 
   return (
     <fetcher.Form method='POST' className={rootStyles.dataForm} action='editData'>
       <div className={rootStyles.formFields}>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Имя'>
           <Input type='text' name='name' placeholder='Имя' 
-          defaultValue={fetcher.data ?? defaultData.name} 
+          defaultValue={data.name} 
           styles={[rootStyles.input]}/>
         </FormField>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Фамлия'>
           <Input type='text' name='surname' placeholder='Фамилия' styles={[rootStyles.input]}
-            defaultValue={fetcher.data ?? defaultData.surname} 
+            defaultValue={data.surname} 
           />
         </FormField>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Отчество'>
           <Input type='text' name='patronymic' placeholder='Отчество' styles={[rootStyles.input]}
-            defaultValue={fetcher.data ?? defaultData.patronymic}
+            defaultValue={data.patronymic}
           />
         </FormField>
         <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Email'>

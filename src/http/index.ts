@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { store } from ".."
 import { error } from "console";
 import { redirect } from "react-router-dom";
@@ -44,7 +44,7 @@ $api.interceptors.response.use(
   (error) => {
     console.log(error)
     if (error.response.status >= 500) {
-      return redirect('/ServerErrorPage');
+      return redirect('/ServerErrorPage')
     }
 
     return error.response;

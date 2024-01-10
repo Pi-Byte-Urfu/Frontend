@@ -1,22 +1,46 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import style from './TeacherRatePage.module.scss';
 import { IGroupInfo } from '../../../../../modules/groups_list/types/IGroupInfo';
 import Progress from '../../progress/component/Progress';
 import { IGroupInfoItem } from '../../../../../modules/groups_list/types/IGrouInfoItem';
 import TasksList from '../../tasks_list/component/TasksList';
+import { getCourse } from '../../../../course_page_editor/api/getCourse';
+import { getGroupInfo } from '../../../../../modules/groups_list/components/group_info/api/getGroupInfo';
+import { getGroup } from '../../../../../../api/getGroup';
 
 const TeacherRatePage:FC = () => {
   const { courseId, groupId } = useParams();
   const data = useLoaderData() as IGroupInfoItem[];
-  console.log(data)
+  const [courseName, setCourseName] = useState<string>();
+  const [groupName, setGroupName] = useState<string>();
 
+  useEffect(() => {
+    downloadCourseData();
+    downloadGroupData();
+  }, [courseId])
+
+  async function downloadCourseData() {
+    if (courseId != undefined) {
+      const response = getCourse(+courseId).then(res => {
+        setCourseName(res.data.name);
+      })
+    }
+  }
+
+  async function downloadGroupData() {
+    if (groupId != undefined) {
+      const response = await getGroup(+groupId).then(res => {
+        setGroupName(res.data.groupName);
+      })
+    }
+  }
   return (
     <div className={style.rate}>
       <div className={[style.container, '_container'].join(' ')}>
         <div className={style.rateHeader}>
           <h2 className={style.rateTitle}>
-            Прогресс
+            Прогресс группы <span className={style.violet}>{groupName}</span> по курсу <span className={style.violet}>{courseName}</span>
           </h2>
         </div>
         <div className={style.rateContent}>

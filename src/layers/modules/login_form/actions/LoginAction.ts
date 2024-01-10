@@ -8,7 +8,7 @@ export async function loginAction({request}:IActionProps) {
   console.log('action')
   const loginData = Object.fromEntries(await request.formData() as any) as ILoginData;
   const response = await login(loginData);
-  console.log(response)
+
   if (response.status == 200) {
     store.login(response.data.id, response.data.userType);
     return redirect('/')

@@ -4,13 +4,14 @@
   align-items: center;
   gap: 40px;
   &:not(:last-of-type) {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 }
 
 .itemRate {
   display: flex;
   align-items: center;
+  flex: 0 0 20%;
 }
 
 .form {
@@ -19,7 +20,7 @@
   flex-direction: row-reverse;
   background-color: rgba(234, 236, 245, 1);
   border-radius: 8px;
-  padding: 5px;
+  padding: 2px;
   margin-right: 5px;
 }
 
@@ -29,6 +30,16 @@
   overflow: hidden;
   border-radius: 50%;
   margin-right: 5px;
+  box-sizing: content-box;
+  padding: 2px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 1);
+  }
 
   img {
     width: 100%;
@@ -45,9 +56,15 @@
 
 .linkStep, .fileLink {
   color: rgba(155, 138, 251, 1);
+  text-align: left;
+  justify-content: start;
 
   &:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
   }
+}
+
+.stepName {
+  flex: 0 0 40%;
 }

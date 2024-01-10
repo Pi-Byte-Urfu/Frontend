@@ -56,6 +56,7 @@ import Task from "../layers/pages/module_page/components/task/component/Task";
 import { tasksListAction } from "../layers/pages/teacher_rate/components/tasks_list/actions/tasksListAction";
 import StudentProgressPage from "../layers/pages/student_progress_page/components/page/component/StudentProgressPage";
 import { studentProgressLoader } from "../layers/pages/student_progress_page/components/page/loaders/studentProgressLoader";
+import ServerErrorPage from "../layers/pages/server_error_page/ServerErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -272,7 +273,11 @@ const router = createBrowserRouter([
     path: '/groups/connect/:groupId',
     element: <GroupConnect/>,
     action: groupConnectAction,
-  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+  },
+  {
+    path: '/ServerErrorPage',
+    element: <ServerErrorPage/>
+  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 ])
 
 export default router;

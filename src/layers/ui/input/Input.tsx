@@ -26,12 +26,13 @@ const Input:FC<PropsWithChildren<IInputProps>> = ({type, styles, name, placehold
 
   useEffect(() => {
     setValue(defaultValue)
-    return () => {
-      console.log(defaultValue)
-      setValue(defaultValue)
-    }
   }, [defaultValue])
 
+  useEffect(() => {
+    return () => {
+      setValue(defaultValue)
+    }
+  }, [])
   return (
     <div className={style.container}>
       <div className={style.inputContainer}>

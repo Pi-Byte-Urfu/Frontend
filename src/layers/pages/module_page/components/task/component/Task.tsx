@@ -11,7 +11,7 @@ const Task:FC = () => {
   const { stepId } = useParams();
   const fetcher = useFetcher<ITaskData>();
   const location = useLocation();
-  console.log(store.user?.userType)
+
   useEffect(() => {
     if (fetcher.state == 'idle' && stepId != undefined) {
       fetcher.load(location.pathname)
