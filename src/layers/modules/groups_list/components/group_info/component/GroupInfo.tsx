@@ -9,6 +9,10 @@ import btnStyles from '../../../../../ui/button/Button.module.scss';
 import Modal from '../../../../../ui/modal/Modal';
 import CoursesListBindin from '../../courses_list_bindin/component/CoursesListBindin';
 import CoursesListForGroup from '../../courses_list/component/CoursesListForGroup';
+import { ICourseItem } from '../../../../courses_list/types/ICourseItem';
+import { getCoursesForGroup } from '../../courses_list/api/getCoursesForGroup';
+import { ICourseItemForGroup } from '../../courses_list/types/ICourseItemForGroup';
+import { group } from 'console';
 
 const GroupInfo:FC = () => {
   const { groupId, userId } = useParams();
@@ -17,10 +21,15 @@ const GroupInfo:FC = () => {
   const location = useLocation();
   const [newCourseId, setNewCourseId] = useState<number>();
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
-
+  const coursesBindinFetcher = useFetcher<ICourseItem[]>();
+  const [coursesBindin, setCoursesBindin] = useState<ICourseItem[]>([]);
+  const [coursesForGroup, setCoursesForGroup] = useState<ICourseItemForGroup[]>([]);
+    
   useEffect(() => {
-    if (fetcher.state == 'idle' && groupId != null) {
+    if (fetcher.state == 'idle' && groupId != null && userId != null) {
       fetcher.load(`${location.pathname}`)
+      coursesBindinFetcher.load(`/bindinCoursesForGroup/${groupId}`);
+      fetchCourses(+groupId)
     }
 
     return () => {
@@ -32,10 +41,28 @@ const GroupInfo:FC = () => {
     setStudents(fetcher.data ?? [])
   }, [fetcher])
 
+  useEffect(() => {
+    // убрать потом перменную
+    const newBindingCourses = coursesBindinFetcher.data ? coursesBindinFetcher.data.filter(course => !coursesForGroup
+      .map(groupCourse => groupCourse.id).includes(course.id))
+      : []
+      ;
+    setCoursesBindin(coursesBindinFetcher.data ?? []);
+  }, [coursesBindinFetcher]);
+
+  async function fetchCourses(groupId: number) {
+    const response = await getCoursesForGroup(groupId).then(
+      res => { setCoursesForGroup(res.data.courseList);}
+    );
+  }
+
   return (
     <div className={style.info}>
       <Modal visible={visibleModal} setVisible={setVisibleModal}>
-        <CoursesListBindin setVisible={setVisibleModal}/>
+        <CoursesListBindin setVisible={setVisibleModal} courses={coursesBindin} setCourses={setCoursesBindin}
+          coursesForGroup={coursesForGroup}
+          setCoursesForGroup={setCoursesForGroup}
+        />
       </Modal>
       <div className={style.header}>
         <p className={style.linkConnect}>
@@ -78,7 +105,7 @@ const GroupInfo:FC = () => {
             </ul>            
           </div>
           <div className={style.coursesList}>
-            <CoursesListForGroup/>
+            <CoursesListForGroup courses={coursesForGroup} setCourses={setCoursesForGroup} coursesBindin={coursesBindin} setCoursesBinding={setCoursesBindin}/>
           </div>
       </div>
     </div>

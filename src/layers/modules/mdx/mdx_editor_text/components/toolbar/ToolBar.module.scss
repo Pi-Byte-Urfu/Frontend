@@ -4,21 +4,6 @@
   margin-left: auto;
 }
 
-.toolbar_saveBtn{
-  background-color: rgba(127, 86, 217, 1);
-  color: rgba(255, 255, 255, 1);
-  padding: 5px 15px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  font-family: 'Inter';
-  border-radius: 5px;
-
-  &:hover {
-    background-color: rgba(105, 65, 198, 1);
-  }
-}
-
 .input {
   display: none;
 }

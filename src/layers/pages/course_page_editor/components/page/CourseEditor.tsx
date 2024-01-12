@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useReducer, useRef } from 'react';
 import style from './CourseEditor.module.scss';
 import CourseEditorNavigation from '../navigation/CourseEditorNavigation';
 import { Outlet, useLoaderData, useLocation, useParams } from 'react-router-dom';
@@ -10,12 +10,12 @@ import { Link } from 'react-router-dom';
 import changeModeBtnStyles from '../../../../../root/scss/ChangeMode.module.scss';
 import { store } from '../../../../..';
 import { UserType } from '../../../../../types/userType';
+import btnStyles from '../../../../ui/button/Button.module.scss';
 
 const CourseEditor:FC = () => {
   const courseData = useLoaderData() as ICourseData;
   const { courseId } = useParams();
   const location = useLocation();
-  
   async function updateDescriptionHandler(markdown: string) {
     if (courseId != undefined) {
       await updateCourse(+courseId, { description: markdown} as ICourseData)
@@ -28,10 +28,17 @@ const CourseEditor:FC = () => {
       <div className={style.description}>
         <div className={style.descriptionContainer}>
         {
-            store.user?.userType == UserType.teacher && 
-          <Link to={location.pathname.replace('courseEditor', 'course')} className={changeModeBtnStyles.link}>
-            режим просмотра
-          </Link>
+            store.user?.userType == UserType.teacher && (
+              <div className={style.toolPanel}>
+                <Link to={location.pathname.replace('courseEditor', 'course')} className={btnStyles.blackBtn}>
+                  режим просмотра
+                </Link>
+                <button type='button' className={btnStyles.blackBtn}>
+                  удалить курс
+                </button>              
+              </div>
+            )
+
           }
           <h2 className={style.title}>
             Описание курса

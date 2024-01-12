@@ -43,7 +43,7 @@
     flex-grow: 1;
 
     &:not(:last-child) {
-      margin-bottom: 5px;
+      margin-bottom: 15px;
     }
   }
 
@@ -81,7 +81,7 @@
 }
 
 .studentTasks {
-  margin-left: 50px;
+  padding-left: 50px;
   flex: 0 0 100%;
 
   &.hidden {
@@ -93,6 +93,7 @@
   width: 24px;
   height: 24px;
   position: relative;
+  top: -8px;
   background: inherit;
   margin-right: 10px;
   &::before {

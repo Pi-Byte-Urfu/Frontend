@@ -1,4 +1,3 @@
-
 .content {
   height: 100%;
   display: flex;
@@ -20,6 +19,13 @@
   &:hover {
     background-color: rgba(26, 25, 25, 0.85);
   }
+}
+
+.formField.active {
+  border: 2px solid rgba(26, 25, 25, 0.95);
+  background-color: rgba(26, 25, 25, 0.2);
+  color: rgba(26, 25, 25, 0.95);
+  font-weight: 500;
 }
 
 .formFieldContainer {
@@ -67,4 +73,14 @@
   margin-bottom: 30px;
   font-weight: 600;
   color: black;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.labeBody input[type="radio"] {
+  background-color: red;
 }

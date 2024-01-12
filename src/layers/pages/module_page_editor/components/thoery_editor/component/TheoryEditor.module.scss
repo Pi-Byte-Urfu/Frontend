@@ -1,6 +1,3 @@
-.theory {
-
-}
 
 .titleForm {
   display: flex;
@@ -15,4 +12,8 @@
   font-weight: 600;
   text-align: center;
   background-color: transparent;
+}
+
+.saveChange {
+  display: none;
 }

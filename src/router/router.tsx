@@ -35,10 +35,7 @@ import { updateModuleAction } from "../layers/pages/module_page_editor/actions/u
 import { theoryLoader } from "../layers/pages/module_page_editor/components/thoery_editor/loaders/theoryLoader";
 import { updateTheoryAction } from "../layers/pages/module_page_editor/actions/updateTheoryAction";
 import TheoryEditor from "../layers/pages/module_page_editor/components/thoery_editor/component/TheoryEditor";
-import TestEditor from "../layers/pages/module_page_editor/components/test_editor/component/TestEditor";
 import Theory from "../layers/pages/module_page/components/theory/Theory";
-import { getTestLoader } from "../layers/pages/module_page_editor/components/test_editor/loaders/getTestLoader";
-import { updateTestAction } from "../layers/pages/module_page_editor/components/test_editor/actions/updateTestAction";
 import Groups from "../layers/modules/groups_list/components/page/component/Groups";
 import ErrorPage from "../layers/pages/error_page/ErrorPage";
 import { createGroupActon } from "../layers/modules/groups_list/components/page/actions/createGroupAction";
@@ -57,6 +54,8 @@ import { tasksListAction } from "../layers/pages/teacher_rate/components/tasks_l
 import StudentProgressPage from "../layers/pages/student_progress_page/components/page/component/StudentProgressPage";
 import { studentProgressLoader } from "../layers/pages/student_progress_page/components/page/loaders/studentProgressLoader";
 import ServerErrorPage from "../layers/pages/server_error_page/ServerErrorPage";
+import ModuleEditorIndex from "../layers/pages/module_page_editor/components/index/ModuleEditorIndex";
+import { bindinCoursesForGroupLoader } from "../layers/modules/groups_list/components/courses_list_bindin/loader/bindinCoursesForGroupLoader";
 
 const router = createBrowserRouter([
   {
@@ -65,12 +64,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage/>,
     children: [
       {
-        index: true,
-        element: <IndexPage />
+        path: 'ErrorPage',
+        element: <ServerErrorPage/>
       },
       {
-        path: 'ErrorPage',
-        element: <ErrorPage/>
+        index: true,
+        element: <IndexPage />
       },
       {
         path: 'studentProgress/:userId/course/:courseId',
@@ -173,6 +172,10 @@ const router = createBrowserRouter([
         loader: moduleEditorLoader,
         children: [
           {
+            index: true,
+            element: <ModuleEditorIndex/>
+          },
+          {
             path: 'choiceStep',
             element: <ChoiceStep/>,
           },
@@ -192,16 +195,6 @@ const router = createBrowserRouter([
             ]
           },
           {
-            path: 'step/1/:stepId',
-            element: <TestEditor/>,
-            loader: getTestLoader,
-            children: [
-              {
-                path: 'update',
-                action: updateTestAction,
-              }
-            ]
-          }, {
             path: 'step/2/:stepId',
             loader: taskLoader,
             element: <TaskEditor/>,
@@ -228,7 +221,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <ModulePageIndex />
+            element: <ModuleEditorIndex/>
           },
           {
             path: 'step/0/:stepId',
@@ -273,11 +266,10 @@ const router = createBrowserRouter([
     path: '/groups/connect/:groupId',
     element: <GroupConnect/>,
     action: groupConnectAction,
-  },
-  {
-    path: '/ServerErrorPage',
-    element: <ServerErrorPage/>
-  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+  }, {
+    path: '/bindinCoursesForGroup/:groupId',
+    loader: bindinCoursesForGroupLoader,
+  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ])
 
 export default router;

@@ -8,11 +8,14 @@ export async function groupConnectAction({params}: IActionProps) {
   if (store.user?.userType == UserType.teacher) {
     return 'В группу могут быть добавлены только ученики';
   }
+
   const response = await groupConnect(+params.groupId);
 
   if (response.status == 200) {
     return 'Вы успешно добавлены в группу';
+  } else if (response.status = 400) {
+    return response.data.error_message;
   }
 
-  return response.data.error_message;
+  return response;
 }

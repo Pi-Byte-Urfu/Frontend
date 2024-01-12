@@ -76,6 +76,7 @@
   flex-grow: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px auto;
 }
 
 .columnName {
@@ -86,8 +87,10 @@
   &:not(:first-child) {
     border-left: 1px solid rgba(248, 249, 252, 1);
   }
-  padding: 15px 0;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .emptyList {

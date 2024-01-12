@@ -4,6 +4,7 @@ import { useFetcher, useLocation, useParams } from 'react-router-dom';
 import { observe } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { AuthContext } from '../../../../../..';
+import { Axios, AxiosResponse } from 'axios';
 
 const GroupConnect:FC = () => {
   const { groupId } = useParams();

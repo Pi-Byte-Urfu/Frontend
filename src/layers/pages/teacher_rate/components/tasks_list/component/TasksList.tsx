@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import style from './TasksList.module.scss';
 import { useFetcher, useParams } from 'react-router-dom';
 import { IStudentTaskItem } from '../types/IStudentTaskItem';
@@ -32,6 +32,13 @@ const TasksList:FC<ITasksListProps> = ({ userId }) => {
   return (
     <ul className={style.list}>
       {
+        tasks.length == 0 ? (
+          <li className={style.emptyList} key={0}>
+            Этот ученик пока не загрузил ни одного задания
+          </li>
+        )
+
+        :
         tasks.map((task) => (
           <li className={style.item} key={task.pageId}>
             <div className={style.stepName}>
@@ -41,9 +48,19 @@ const TasksList:FC<ITasksListProps> = ({ userId }) => {
             </div>
             <div className={style.itemRate}>
               <fetcher.Form action={`newRate/${task.pageId}/${userId}`} method='POST' className={style.form}>
-                <input type='number' min={0} max={task.maxScore} className={style.scoreInput} name={'score'} defaultValue={task.studentScore}/>
+                <input type='number' min={0} max={task.maxScore} className={style.scoreInput} name={'score'} defaultValue={task.studentScore}
+                  onChange={(ev: ChangeEvent<HTMLInputElement>) => {
+                    console.log(ev.target.value)
+                  }}
+                  onBlur={(ev) => {
+                    const btn: any = ev.currentTarget.parentElement?.querySelector(`.${style.submitBtn}`);
+                    if (btn) {
+                      btn.click()
+                    }
+        
+                  }}
+                />
                 <button type='submit' className={style.submitBtn}>
-                  <img src={require(`../../../../../../static/icons/upload-icon.png`)} alt="icon"/>
                 </button>
               </fetcher.Form>
               <div className={style.itemRateMaxScore}>

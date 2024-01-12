@@ -8,11 +8,6 @@ export interface ILoginResponse {
   userType: UserType
 }
 export async function login(data: ILoginData) {
-  try{
     const response = await $api.post<ILoginResponse>('/users/login', JSON.stringify(data))
     return response;
-
-  } catch(e: any) {
-    return e.response;
-  }
 }

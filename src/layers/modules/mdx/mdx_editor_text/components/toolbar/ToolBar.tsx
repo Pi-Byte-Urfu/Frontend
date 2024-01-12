@@ -4,6 +4,7 @@ import style from './ToolBar.module.scss';
 import YouTubeButton from '../YouTube/YouTubeButton';
 import { update } from 'immutable';
 import { useFetcher, useSubmit } from 'react-router-dom';
+import btnStyles from '../../../../../ui/button/Button.module.scss';
 
 interface IToolBarProps {
   markdown: string | undefined;
@@ -33,14 +34,13 @@ const ToolBar: FC<IToolBarProps> = ({markdown, actionPath, inputName}) => {
       <CreateLink/>
       <InsertImage/>
       <YouTubeButton/>
-      <InsertTable/>
       <div data-orientation="vertical" aria-orientation="vertical" role="separator"></div>
       <InsertThematicBreak/>      
     </div>
     <div className={style.toolBar_buttons}>
       <fetcher.Form action={actionPath} method="POST" ref={formRef}>
         <textarea name={inputName} ref={inputRef} className={style.input}/>
-        <button type='submit' className={style.toolbar_saveBtn}
+        <button type='submit' className={btnStyles.blackBtn}
           onClick={() => {
             if (inputRef.current != null) {
               inputRef.current.value = markdown ?? ''

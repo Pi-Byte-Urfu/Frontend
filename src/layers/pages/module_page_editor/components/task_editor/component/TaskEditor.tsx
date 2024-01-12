@@ -10,6 +10,7 @@ const TaskEditor:FC = () => {
   const { stepId } = useParams();
   const fetcher = useFetcher();
   const location = useLocation();
+  const updateFethcer = useFetcher();
 
   useEffect(() => {
     if (fetcher.state == 'idle') {
@@ -18,7 +19,7 @@ const TaskEditor:FC = () => {
     
   }, [stepId])
   const formRef = useRef<HTMLFormElement>(null);
-  const btnRef = useRef<HTMLButtonElement>(null);
+  const submitBtnRef = useRef<HTMLButtonElement>(null);
   const updateContentHandler = async (markdown: string) => 
   {
     if (stepId!= undefined) {
@@ -28,29 +29,39 @@ const TaskEditor:FC = () => {
 
   return (
     <div className={style.theory}>
-      <fetcher.Form className={style.titleForm} id={'taskForm'}
+      <updateFethcer.Form className={style.titleForm} id={'taskForm'}
         action='update'
         method='POST' ref={formRef} 
       >
-        <Input styles={[style.titleInput]} 
+        <input className={[style.titleInput].join(' ')} 
           type='text' 
           name='name' 
           placeholder={"Измените имя step'a"}
           defaultValue={fetcher.data?.name}
+          onChange={() => {
+            if (submitBtnRef.current != null) {
+              submitBtnRef.current.click();
+            }
+          }}
           />
-          <button type='submit' className={style.nameBtn} ref={btnRef} style={{color: 'black'}}>
+          <button type='submit' className={style.saveChange} ref={submitBtnRef}>
             save
           </button>
-      </fetcher.Form>
+      </updateFethcer.Form>
       <div className={style.maxScore}>
         <div className={style.maxScoreLabel}>
-          Максимальное количество балло за задание: 
+          Максимальное количество баллов за задание: 
         </div>
-        <Input styles={[style.maxScoreInput]}
+        <input className={style.maxScoreInput}
           type='number'
           name='maxScore'
           defaultValue={fetcher.data?.maxScore}
           form='taskForm'
+          onChange={() => {
+            if (submitBtnRef.current != null) {
+              submitBtnRef.current.click();
+            }
+          }}
         />
       </div>
       <MDXEditorText defaultMarkdown={fetcher.data?.content ?? ''} actionPath={'update'} inputName={'content'}/>

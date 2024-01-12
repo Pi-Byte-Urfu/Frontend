@@ -1,24 +1,26 @@
 import React, { FC, useEffect, useState } from 'react';
 import style from './CoursesListBindin.module.scss';
-import { useFetcher, useParams } from 'react-router-dom';
+import { redirect, useFetcher, useNavigate, useParams } from 'react-router-dom';
 import { ICourseItem } from '../../../../courses_list/types/ICourseItem';
 import { bindCourse } from '../api/bindCourse';
 import btnStyles from '../../../../../ui/button/Button.module.scss';
+import { ICourseItemForGroup } from '../../courses_list/types/ICourseItemForGroup';
 
 interface CoursesListBindinProps {
   setVisible: (currentVisivle: boolean) => void
+  courses: ICourseItem[],
+  setCourses: (courses: ICourseItem[]) => void,
+  setCoursesForGroup: (courses: ICourseItemForGroup[]) => void,
+  coursesForGroup: ICourseItemForGroup[]
 }
 
-const CoursesListBindin:FC <CoursesListBindinProps> = ({setVisible}) => {
-  const fetcher = useFetcher<ICourseItem[]>();
+const CoursesListBindin:FC <CoursesListBindinProps> = ({setVisible, courses, setCourses, setCoursesForGroup, coursesForGroup}) => {
   const { groupId, userId } = useParams();
-  const [coursesId, setCoursesId] = useState<number[]>([])
-
+  const [coursesId, setCoursesId] = useState<number[]>([]);
+  const teacherId = Number(userId)
   useEffect(() => {
-    if (fetcher.state == 'idle' && userId != undefined && groupId != undefined) {
-      fetcher.load(`/profile/${userId}/courses`);
-    }
-  }, [groupId]);
+    
+  }, [courses]);
 
   function toggleCourseId(courseId: number) {
     for (let id of coursesId) {
@@ -41,9 +43,9 @@ const CoursesListBindin:FC <CoursesListBindinProps> = ({setVisible}) => {
       <div className={style.content}>
         <ul className={style.list}>
           {
-            fetcher.data != undefined ?
+            courses.filter(course => course.creatorId == teacherId).length != 0 ?
             (
-              fetcher.data.map((course) => (
+              courses.filter(course => course.creatorId == teacherId).map((course) => (
                 <li className={style.item} onClick={(ev: any) => {
                   const item:any = document.querySelector(`[data-courseid='${course.id}']`)
                   item?.classList.toggle(style.activeItem)
@@ -60,25 +62,36 @@ const CoursesListBindin:FC <CoursesListBindinProps> = ({setVisible}) => {
             )
             : (
               <div className={style.message}>
-                У вас пока нет ни одного курса
+                <div>
+                  У вас нет курсов, которые вы бы могли привязать к этой группе
+                </div>
               </div>
             )
           }
         </ul>
       </div>
-      <div className={style.buttons}>
-        <button type='button' className={btnStyles.violetBtn}
-          onClick={async() => {
-            if (groupId != undefined) {
-              const response = await bindCourse(coursesId, +groupId).then(() => {
-               
-              });
-            }           
-          }}
-        >
-          Привязать выбранные курсы
-        </button>
-      </div>
+      {
+        courses.length != 0 && (
+          <div className={style.buttons}>
+            <button type='button' className={btnStyles.violetBtn}
+              onClick={async() => {
+                if (groupId != undefined) {
+                  const response = await bindCourse(coursesId, +groupId).then((res) => {
+                  const newCoursesForGroup = courses.filter(course => coursesId.includes(course.id)).map(course => course as any as ICourseItemForGroup)
+                  setCoursesForGroup([...coursesForGroup, ...newCoursesForGroup])
+                  setCourses(courses.filter(course => !coursesId.includes(course.id)))
+                  setCoursesId([])
+                  setVisible(false)
+                  });
+                }           
+              }}
+            >
+              Привязать выбранные курсы
+            </button>
+          </div>          
+        )
+      }
+
     </div>
   );
 };

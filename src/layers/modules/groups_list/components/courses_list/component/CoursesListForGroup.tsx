@@ -7,26 +7,19 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mdxeditor/editor';
 import { deleteCourse } from '../api/deleteCourse';
 import { setgroups } from 'process';
+import { ICourseItem } from '../../../../courses_list/types/ICourseItem';
 
-const CoursesListForGroup: FC = () => {
+interface CoursesListForGroupProps {
+  courses: ICourseItemForGroup[],
+  setCourses: (course: ICourseItemForGroup[]) => void,
+  coursesBindin: ICourseItem[],
+  setCoursesBinding: (courses: ICourseItem[]) => void
+}
+
+const CoursesListForGroup: FC<CoursesListForGroupProps> = ({ courses, setCourses, coursesBindin, setCoursesBinding }) => {
   const { groupId } = useParams();
-  const [courses, setCourses] = useState<ICourseItemForGroup[]>([]);
   let errorMessage: undefined | string = undefined;
-
-  useEffect(() => {
-    if (groupId != undefined) {
-      fetchCourses(+groupId)
-    }
-  }, [groupId])
-
-  async function fetchCourses(groupId: number) {
-    const response = await getCoursesForGroup(groupId).then(
-      res => { setCourses(res.data.courseList);}
-    ).catch(
-      err => errorMessage = err.response.data.error_message
-    );
-  }
-
+  
   return (
     <ul className={style.coursesList}>
       {
@@ -52,6 +45,7 @@ const CoursesListForGroup: FC = () => {
                   onClick={async() => {
                     if (groupId != undefined) {
                       await deleteCourse(+groupId, course.id).then(() => {
+                        setCoursesBinding([...coursesBindin, ...courses.filter(item => item.id == course.id).map(item => item as any as ICourseItem)])
                         setCourses(courses.filter(item => item.id != course.id))
                       })
                     }

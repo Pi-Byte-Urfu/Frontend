@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { FC, useEffect, useState } from 'react';
+import { Link, useFetcher, useParams } from 'react-router-dom';
 import style from './CourseNavigation.module.scss';
 import { API_URL } from '../../../../../http';
 import ModulesList from '../../../../modules/modules_list/component/ModulesList';
+import { IModuleItem } from '../../../../components/module_item/types/IModuleItem';
+import { useEditor } from '../../../text_editor/hooks/useEditor';
 
 interface ICourseNavigationProps {
   courseName: string
@@ -10,6 +12,18 @@ interface ICourseNavigationProps {
 
 const CourseNavigation:FC<ICourseNavigationProps> = ({ courseName }) => {
   const { courseId } = useParams();
+  const [modules, setModules] = useState<IModuleItem[]>([]);
+  const modulesFetcher = useFetcher<IModuleItem[]>();
+
+  useEffect(() => {
+    if (modulesFetcher.state == 'idle' && courseId != undefined) {
+      modulesFetcher.load(`/modulesList/${courseId}`);
+    }
+  }, [courseId])
+
+  useEffect(() =>{
+    setModules(modulesFetcher.data ?? []);
+  }, [modulesFetcher])
 
   return (
     <div className={style.nav}>
@@ -22,7 +36,7 @@ const CourseNavigation:FC<ICourseNavigationProps> = ({ courseName }) => {
             {courseName}
           </h1>
         </div>
-        <ModulesList/>        
+        <ModulesList modules={modules} setModules={setModules}/>        
       </div>
     </div>
   );

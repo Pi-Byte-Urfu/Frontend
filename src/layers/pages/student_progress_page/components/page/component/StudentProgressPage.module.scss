@@ -7,7 +7,10 @@
   background-color: rgba(248, 249, 252, 1);
   border-radius: 12px;
   width: 1434px;
-  padding: 30px 23px 0 23px;
+  padding: 30px 23px 30px 23px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
 }
 
 .courseName {
@@ -20,6 +23,8 @@
 .content {
   display: flex;
   align-items: center;
+  flex-grow: 1;
+  max-height: 100%;
 }
 
 .column {
@@ -53,6 +58,19 @@
   background-color: rgba(3, 152, 85, 1);
   height: 100%;
   position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -10%);
+    background-color: black;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
 }
 
 .studentScoreCourse {
@@ -71,7 +89,9 @@
 
 .studentTasks {
   flex: 0 0 65%;
-  padding: 67px 0;
+  padding-top: 30px;
+  max-height: 100%;
+  overflow-y: scroll;
 }
 
 .buttons {

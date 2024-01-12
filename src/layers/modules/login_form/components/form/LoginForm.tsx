@@ -22,7 +22,7 @@ interface ILoginForm {
 
 const LoginForm:FC<ILoginForm> = ({activeModal, setActiveModal, setIsVisibleModal}) => {
   const [formStatus, setFormStatus] = useState<boolean>(false);
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<AxiosResponse>();
   
   return (
     <div className={style.login}>
@@ -49,9 +49,9 @@ const LoginForm:FC<ILoginForm> = ({activeModal, setActiveModal, setIsVisibleModa
                   />
                 </FormField>
               </div>
-              {fetcher.data != null && (
+              {fetcher.data?.status == 400 && (
                 <div className={style.errorMessage}>
-                  {fetcher.data}
+                  {fetcher.data.data.error_message}
                 </div>
               )}
 

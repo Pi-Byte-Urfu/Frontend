@@ -20,10 +20,12 @@ const MDXContent:FC<IMDXContentProps> = ({defaultMarkdown}) => {
     <>
       <MDXEditor
         autoFocus={false}
-        readOnly={true}
+        contentEditableClassName='prose'
         className={['prose', style.prose].join(' ')}
         markdown={defaultMarkdown}
-        onChange={(text: string) => editor.current?.setMarkdown(defaultMarkdown)}
+        onChange={(text: string) => {
+          editor.current?.setMarkdown(defaultMarkdown)
+        }}
         ref={editor}
         plugins={
           [
@@ -31,9 +33,9 @@ const MDXContent:FC<IMDXContentProps> = ({defaultMarkdown}) => {
           headingsPlugin(), 
           listsPlugin(), 
           quotePlugin(), 
+          linkDialogPlugin(),
           thematicBreakPlugin(),
           linkPlugin(),
-          linkDialogPlugin(),
           tablePlugin(),
           imagePlugin({
             imageUploadHandler: () => {

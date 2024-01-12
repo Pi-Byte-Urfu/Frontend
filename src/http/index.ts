@@ -40,13 +40,19 @@ $api.interceptors.request.use((config) => {
 })
 
 $api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    console.log(res);
+    return res;
+  },
   (error) => {
     console.log(error)
-    if (error.response.status >= 500) {
-      return redirect('/ServerErrorPage')
-    }
+    if (error.response != undefined) {
+      if (axios.isAxiosError(error) && error.response.status == 400) {
+        return error.response;
+      } 
 
-    return error.response;
+      return redirect('/ErrorPage');
+    }
+    return redirect('/ErrorPage')   
   }
 )

@@ -50,7 +50,6 @@ const MDXEditorText: FC<MDXEditorTextProps> = ({defaultMarkdown, actionPath, inp
         thematicBreakPlugin(),
         linkPlugin(),
         linkDialogPlugin(),
-        tablePlugin(),
         imagePlugin({
           imageUploadHandler: () => {
             return Promise.resolve('https://picsum.photos/200/300')

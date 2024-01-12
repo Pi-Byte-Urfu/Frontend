@@ -10,14 +10,17 @@ const TheoryEditor = () => {
   const { stepId } = useParams(); 
   const fetcher = useFetcher<ITheoryData>();
   const location = useLocation();
+  const submitBtnRef = useRef<HTMLButtonElement>(null);
+  const updateFethcer = useFetcher<ITheoryData>();
+
   useEffect(() => {
     if (fetcher.state == 'idle') {
       fetcher.load(location.pathname);
     }
     
-  }, [stepId])
+  }, [stepId]);
+
   const formRef = useRef<HTMLFormElement>(null);
-  const btnRef = useRef<HTMLButtonElement>(null);
   const updateContentHandler = async (markdown: string) => 
   {
     if (stepId!= undefined) {
@@ -28,20 +31,25 @@ const TheoryEditor = () => {
 
   return (
     <div className={style.theory}>
-      <fetcher.Form className={style.titleForm} 
+      <updateFethcer.Form className={style.titleForm} 
         action='update'
         method='POST' ref={formRef} 
       >
-        <Input styles={[style.titleInput]} 
+        <input className={style.titleInput} 
           type='text' 
           name='name' 
           placeholder={"Измените имя step'a"}
           defaultValue={fetcher.data?.name}
+          onChange={() => {
+            if (submitBtnRef.current != null) {
+              submitBtnRef.current.click();
+            }
+          }}
           />
-          <button type='submit' className={style.nameBtn} ref={btnRef} style={{color: 'black'}}>
+          <button type='submit' className={style.saveChange} ref={submitBtnRef} style={{color: 'black'}}>
             save
           </button>
-      </fetcher.Form>
+      </updateFethcer.Form>
       <MDXEditorText defaultMarkdown={fetcher.data?.content ?? ''} actionPath={'update'} inputName={'content'}/>
     </div>
   );

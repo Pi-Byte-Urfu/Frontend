@@ -35,7 +35,7 @@ const GroupsList:FC = () => {
           >
             {item.groupName}
           </NavLink>
-          <RemoveButton path={`groups/${item.id}`} setEntities={setGroups} entities={groups} id={item.id}/>
+          <RemoveButton path={`groups/${item.id}`} setEntities={setGroups} entities={groups} id={item.id} redirectPath={`/profile/${userId}/groups`}/>
         </li>
       ))
     }

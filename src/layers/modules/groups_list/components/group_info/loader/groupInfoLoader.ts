@@ -9,5 +9,5 @@ export async function groupInfoLoader({params}: IActionProps) {
     return response.data.students;
   }
 
-  return redirect('/');
+  return response;
 }

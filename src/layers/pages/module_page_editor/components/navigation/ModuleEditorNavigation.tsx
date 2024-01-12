@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import style from './ModuleEditorNavigation.module.scss';
-import { Form, redirect, redirectDocument, useFetcher, useLoaderData, useNavigate } from 'react-router-dom';
+import { Form, redirect, redirectDocument, useFetcher, useLoaderData, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Button from '../../../../ui/button/Button';
 import StepsList from '../../../../modules/steps_list/component/StepsList';
 import Input from '../../../../ui/input/Input';
@@ -8,58 +8,87 @@ import { Link } from 'react-router-dom';
 import inputStyles from '../../../../ui/input/Input.module.scss';
 import { IModuleData } from '../../types/IModuleData';
 import formStyles from '../../../../../root/scss/Form.module.scss';
+import { IStepsList } from '../../../../modules/steps_list/types/IStepsList';
+import { IStepItem } from '../../../../components/step_item/types/IStepItem';
+import { IStepResponse } from '../../types/IStep';
+import { AxiosResponse } from 'axios';
 
 interface IModuleEditorNavigationProps {
   moduleName: string
 }
 
-const ModuleEditorNavigation:FC<IModuleEditorNavigationProps> = ({moduleName}) => {
+const ModuleEditorNavigation: FC<IModuleEditorNavigationProps> = ({ moduleName }) => {
+  const { moduleId, courseId } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
-  const fetcher = useFetcher<IModuleData>(); 
+  const moduleNameFethcer = useFetcher<IModuleData>();
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const saveModuleNameBtn = useRef<HTMLButtonElement>(null);
+  const stepsFetcher = useFetcher<IStepsList>();
+  const [steps, setSteps] = useState<IStepItem[]>([]);
+  const newStepFetcher = useFetcher<AxiosResponse>();
+
   useEffect(() => {
-    return () => {
-      if (inputRef.current != null) {
-        console.log(inputRef.current.value)
-        inputRef.current.value = ''; 
-      } 
+    if (stepsFetcher.state == 'idle' && moduleId != undefined) {
+      stepsFetcher.load(`/stepsList/${moduleId}`);
     }
-  }, [])
+  }, [moduleId]);
+
+  useEffect(() => {
+    if (stepsFetcher.data) {
+      setSteps(stepsFetcher.data.coursePages);
+      if (inputRef.current != null) {
+        inputRef.current.value = '';
+      }   
+    }
+  }, [stepsFetcher]);
+
+  useEffect(() => {
+    if (newStepFetcher.data?.status == 200 && inputRef.current != null) {
+      inputRef.current.value = '';
+    }
+  }, [newStepFetcher]);
+
   return (
     <div className={style.nav}>
       <div className={style.navHeader}>
-      <fetcher.Form method='POST' action='updateModule' className={style.nameForm} ref={formRef}>
-          <input type={'text'} 
-            defaultValue={fetcher.data?.name ?? moduleName} 
-            name={"name"} 
-            placeholder='Измените название модуля' 
+        <moduleNameFethcer.Form method='POST' action='updateModule' className={style.nameForm} ref={formRef}>
+          <input type={'text'}
+            defaultValue={moduleNameFethcer.data?.name ?? moduleName}
+            name={"name"}
+            placeholder='Измените название модуля'
             className={inputStyles.courseName}
-            />
-            <button type='submit' className={style.saveName}>
-              <img src={require('../../../../../static/icons/save-icon.svg').default}/>
-            </button>
-        </fetcher.Form>
+            onChange={() => {
+              if (saveModuleNameBtn.current != null) {
+                saveModuleNameBtn.current.click()
+              }
+            }}
+          />
+          <button type='submit' className={style.saveName} ref={saveModuleNameBtn}>
+          </button>
+        </moduleNameFethcer.Form>
       </div>
-      <StepsList/>
-      <Form method='POST' action='createStep' className={formStyles.createEntityForm} id="createStep">
+      <StepsList steps={steps} setSteps={setSteps} />
+      <newStepFetcher.Form method='POST' action='createStep' className={[formStyles.createEntityForm, style.createEntityForm].join(' ')} id="createStep">
         <input
-          name="name" 
-          type='text' defaultValue={''} 
-          placeholder='Новый step'
-          className={[style.moduleNameInput].join()} 
+          name="name"
+          type='text' defaultValue={''}
+          placeholder='Новый шаг'
+          className={style.stepNameInput}
           onFocus={() => {
-            navigate('choiceStep')
-          }} 
+            if (!location.pathname.includes('choiceStep')) {
+              navigate('choiceStep')
+            }
+          }}
           ref={inputRef}
         />
-        <Button
-          styles={[style.createNavLinkBtn]} 
-          type='submit'
-        >
-          <span className={style.plus}>+</span>
-        </Button>
-      </Form>
+        <div className={style.createNavLinkBlock}>
+          <span className={style.plus}>
+            +
+          </span>
+        </div>
+      </newStepFetcher.Form>
     </div>
   );
 };

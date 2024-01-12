@@ -10,7 +10,14 @@ const CoursesList:FC = () => {
 
   return (
     <ul className={style.list}>
-      { courses.map(course => <CourseItem id={course.id} title={course.name} coverURL={course.coursePhoto} key={course.id}/>)}
+      { 
+        courses.length == 0 ? (
+          <li className={style.empty}>
+            У вас пока нет ни одного курса
+          </li>
+        )
+         :
+        courses.map(course => <CourseItem id={course.id} title={course.name} coverURL={course.coursePhoto} key={course.id}/>)}
     </ul>
   );
 };

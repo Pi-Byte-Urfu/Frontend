@@ -39,7 +39,7 @@ const Header:FC = observer(() => {
           </Link>
         </div>
         <div className={style.links}>
-          <SiteNav styles={[style.nav]}/>
+          {/* <SiteNav styles={[style.nav]}/> */}
           { !store.isAuth ? (
             <div className={style.authLinks}>
               <Button 
@@ -64,7 +64,7 @@ const Header:FC = observer(() => {
             onMouseOver={ () => setIsVisibleDropDown(true)}
             onMouseOut={ () => setIsVisibleDropDown(false)}
             >
-            <Link to={`/profile/${store.user?.id}`}>
+            <Link to={`/profile/${store.user?.id}/courses`}>
               <img src={require("./img/profile-icon.svg").default} alt='profile icon'/>
             </Link>
             <DropDownMenu isVisible={isVisibleDropDown} styles={[style.menu]} setIsVisible={setIsVisibleDropDown}>

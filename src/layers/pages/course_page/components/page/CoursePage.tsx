@@ -8,6 +8,8 @@ import changeModeBtnStyles from '../../../../../root/scss/ChangeMode.module.scss
 import { Link } from 'react-router-dom';
 import { store } from '../../../../..';
 import { UserType } from '../../../../../types/userType';
+import btnStyles from '../../../../ui/button/Button.module.scss';
+
 const CoursePage: FC = () => {
   const courseData = useLoaderData() as ICourseData;
   const { courseId } = useParams();
@@ -20,16 +22,21 @@ const CoursePage: FC = () => {
         <div className={style.descriptionContainer}>
           {
             store.user?.userType == UserType.teacher ?
-            (
-              <Link to={location.pathname.replace('course', 'courseEditor')} className={changeModeBtnStyles.link}>
-                режим редактирования
-              </Link>
-            )
-            : (
-              <Link to={`/studentProgress/${userId}/course/${courseId}`} className={changeModeBtnStyles.link}>
-                прогресс курса
-              </Link>
-            )
+              (
+                <div className={style.toolPanel}>
+                  <Link to={location.pathname.replace('course', 'courseEditor')} className={btnStyles.blackBtn}>
+                    режим редактирования
+                  </Link>
+                </div>
+              )
+              : (
+                <div className={style.toolPanel}>
+                  <Link to={`/studentProgress/${userId}/course/${courseId}`} className={btnStyles.blackBtn}>
+                    прогресс курса
+                  </Link>                  
+                </div>
+
+              )
           }
           <h2 className={style.title}>
             Описание курса

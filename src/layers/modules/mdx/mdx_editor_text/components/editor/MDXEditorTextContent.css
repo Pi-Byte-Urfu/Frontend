@@ -753,6 +753,7 @@ img, video {
 }
 
 .prose a {
+  display: inline;
   text-decoration: none;
 }
 
@@ -1331,4 +1332,8 @@ img, video {
 
 ._underline_1xkrx_18 {
   text-decoration: underline;
+}
+
+.MDXContent_prose__saEl9 ._actionButton_utjas_633 {
+  display: none;
 }
