@@ -31,7 +31,7 @@ const StudentForm:FC<IStudentFormProps>= ({defaultData}) => {
           defaultValue={data.name} 
           styles={[rootStyles.input]}/>
         </FormField>
-        <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Фамлия'>
+        <FormField styles={[formFieldStyles.profileEditDataFormField, rootStyles.FormField]} textLabel='Фамилия'>
           <Input type='text' name='surname' placeholder='Фамилия' styles={[rootStyles.input]}
             defaultValue={data.surname} 
           />
