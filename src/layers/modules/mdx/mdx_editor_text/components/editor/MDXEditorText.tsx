@@ -7,6 +7,7 @@ import { sendPhoto } from '../../api/sendMarkdown';
 import { YouTubeComponentDescriptor } from '../YouTube/YouTubeComponentDescriptor';
 import style from './MDXEditorText.module.scss';
 import { update } from 'immutable';
+import { sendEditorPhoto } from '../../../../../../api/sendEditorPhoto';
 
 async function imageUploadHandler(image: File) {
   const formData = new FormData()
@@ -51,8 +52,14 @@ const MDXEditorText: FC<MDXEditorTextProps> = ({defaultMarkdown, actionPath, inp
         linkPlugin(),
         linkDialogPlugin(),
         imagePlugin({
-          imageUploadHandler: () => {
-            return Promise.resolve('https://picsum.photos/200/300')
+          imageUploadHandler: async(file) => {
+            const formData = new FormData();
+            formData.append('FormFile', file);
+            const response = await sendEditorPhoto(formData);
+            if (response.status == 200) {
+              return response.data.urlToGet;
+            }
+            return '';
           },
           imageAutocompleteSuggestions: [
             'https://picsum.photos/200/300',
