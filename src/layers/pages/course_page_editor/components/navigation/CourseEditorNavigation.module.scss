@@ -2,10 +2,14 @@
   flex: 0 0 420px;
   padding-top: 24px;
   border-right: 2px solid white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .navHeader {
   padding: 0 20px;
+  margin-bottom: 57px;
 }
 
 .createLinkForm {
@@ -49,7 +53,6 @@
 }
 
 .nameForm {
-  margin-bottom: 57px;
   position: relative;
 }
 
@@ -57,3 +60,7 @@
   display: none;
 }
 
+.backButton {
+  padding: 0 20px;
+  margin-top: 10px;
+}

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import style from './TeacherRatePage.module.scss';
 import { IGroupInfo } from '../../../../../modules/groups_list/types/IGroupInfo';
@@ -8,12 +8,15 @@ import TasksList from '../../tasks_list/component/TasksList';
 import { getCourse } from '../../../../course_page_editor/api/getCourse';
 import { getGroupInfo } from '../../../../../modules/groups_list/components/group_info/api/getGroupInfo';
 import { getGroup } from '../../../../../../api/getGroup';
+import ReturnButton from '../../../../../components/return_button/ReturnButton';
+import { AuthContext } from '../../../../../..';
 
 const TeacherRatePage:FC = () => {
   const { courseId, groupId } = useParams();
   const data = useLoaderData() as IGroupInfoItem[];
   const [courseName, setCourseName] = useState<string>();
   const [groupName, setGroupName] = useState<string>();
+  const store = useContext(AuthContext);
 
   useEffect(() => {
     downloadCourseData();
@@ -42,6 +45,9 @@ const TeacherRatePage:FC = () => {
           <h2 className={style.rateTitle}>
             Прогресс группы <span className={style.violet}>{groupName}</span> по курсу <span className={style.violet}>{courseName}</span>
           </h2>
+          <div className={style.backButton}>
+            <ReturnButton path={`/profile/${store.user?.id}/groups/info/${groupId}`} text='Обратно к группе'/>
+          </div>   
         </div>
         <div className={style.rateContent}>
           <ul>

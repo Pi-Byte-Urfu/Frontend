@@ -1,4 +1,8 @@
-
+.theory {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 .titleForm {
   display: flex;
   justify-content: center;

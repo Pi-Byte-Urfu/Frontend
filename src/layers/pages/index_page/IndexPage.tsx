@@ -42,7 +42,7 @@ const IndexPage = () => {
                   <img src={require('./img/group-icon.png')} alt='photo'/>
                 </div>
                 <div className={style.itemText}>
-                  Создание групп и возможность учителю смотреть их прогресс и выствлять баллы
+                  Создание групп и возможность учителю смотреть их прогресс и выставлять баллы
                 </div>
               </li>
               <li className={style.advantagesItem}>
@@ -50,7 +50,7 @@ const IndexPage = () => {
                   <img src={require('./img/course-icon.png')} alt='photo'/>
                 </div>
                 <div className={style.itemText}>
-                  Гибкое управление теоритическим материалом
+                  Гибкое управление теоретическим материалом
                 </div>
               </li>
             </ul>

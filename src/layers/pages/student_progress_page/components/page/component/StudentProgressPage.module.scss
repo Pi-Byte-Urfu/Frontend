@@ -13,6 +13,11 @@
   flex-direction: column;
 }
 
+.heaer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .courseName {
   font-size: 26px;
   font-weight: 600;
@@ -90,8 +95,8 @@
 .studentTasks {
   flex: 0 0 65%;
   padding-top: 30px;
-  max-height: 100%;
-  overflow-y: scroll;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .buttons {

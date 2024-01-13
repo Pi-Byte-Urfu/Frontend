@@ -1,11 +1,14 @@
 
 .groupList {
-
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .groupListContainer {
   display: flex;
   align-items: stretch;
+  flex-grow: 1;
 }
 
 .sideBar {
@@ -19,12 +22,5 @@
 }
 
 form.createGroupForm {
-  margin-bottom: 20px;
-  input {
-   &:focus {
-    border: none;
-    border-bottom: 1px solid white;
-   } 
-  }
-  
+  height: 81px;
 }

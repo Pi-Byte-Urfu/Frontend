@@ -1,4 +1,10 @@
 
+.task {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
 .maxScore {
   margin-bottom: 30px;
   color: black;

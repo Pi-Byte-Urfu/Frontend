@@ -1,6 +1,10 @@
 .list {
   font-size: 18px;
   width: 100%;
+  margin-bottom: auto;
+  max-height: 560px;
+  overflow-y: auto;
+  flex-grow: 1;
 }
 
 .item{

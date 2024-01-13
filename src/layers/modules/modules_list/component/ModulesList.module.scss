@@ -1,6 +1,15 @@
 .list {
   font-size: 18px;
   width: 100%;
+  overflow-y: auto;
+  margin-bottom: auto;
+  max-height: 359px;
+  height: auto;
+  margin-bottom: auto;
+  border: 1px solid;
+  border-left: none;
+  border-right: none;
+  flex-grow: 1;
 }
 
 .item{

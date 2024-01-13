@@ -56,16 +56,21 @@ import { studentProgressLoader } from "../layers/pages/student_progress_page/com
 import ServerErrorPage from "../layers/pages/server_error_page/ServerErrorPage";
 import ModuleEditorIndex from "../layers/pages/module_page_editor/components/index/ModuleEditorIndex";
 import { bindinCoursesForGroupLoader } from "../layers/modules/groups_list/components/courses_list_bindin/loader/bindinCoursesForGroupLoader";
+import ChatPage from "../layers/modules/chat/components/page/component/ChatPage";
+import ChatIndex from "../layers/modules/chat/components/chat_index/ChatIndex";
+import ChatInfo from "../layers/modules/chat/components/chat_info/component/ChatInfo";
+import { chatPageLoader } from "../layers/modules/chat/components/page/loader/chatPageLoader";
+import { messageLoader } from "../layers/modules/chat/components/chatNavItem/loader/messageLoader";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: 'ErrorPage',
-        element: <ServerErrorPage/>
+        element: <ServerErrorPage />
       },
       {
         index: true,
@@ -73,12 +78,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'studentProgress/:userId/course/:courseId',
-        element: <StudentProgressPage/>,
+        element: <StudentProgressPage />,
         loader: studentProgressLoader,
       },
       {
         path: 'teacherRate/groups/:groupId/courses/:courseId',
-        element: <TeacherRatePage/>,
+        element: <TeacherRatePage />,
         loader: groupInfoLoader,
         children: [
           {
@@ -97,16 +102,27 @@ const router = createBrowserRouter([
             loader: coursesListLoader,
           },
           {
-            path: 'questions/',
-            element: <QuestionsList />
-          },
-          {
-            path: 'groups/',
-            element: <Groups/>,
+            path: 'chats/',
+            element: <ChatPage />,
+            loader: chatPageLoader,
             children: [
               {
                 index: true,
-                element: <GroupsIndex/>
+                element: <ChatIndex/>
+              },
+              {
+                path: 'info/:chatId',
+                element: <ChatInfo/>
+              }
+            ]
+          },
+          {
+            path: 'groups/',
+            element: <Groups />,
+            children: [
+              {
+                index: true,
+                element: <GroupsIndex />
               },
               {
                 path: 'createGroup',
@@ -118,7 +134,7 @@ const router = createBrowserRouter([
               {
                 path: 'info/:groupId',
                 loader: groupInfoLoader,
-                element: <GroupInfo/>
+                element: <GroupInfo />
               }
             ]
           }
@@ -126,7 +142,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'profileEdit/',
-        element: <ProfileEditor/>,
+        element: <ProfileEditor />,
         loader: profileDataLoader,
       },
       {
@@ -157,7 +173,7 @@ const router = createBrowserRouter([
           {
             path: 'createModule',
             action: createModuleAction,
-          },{
+          }, {
             path: 'updateCourse',
             action: updateCourseAction
           }
@@ -173,11 +189,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <ModuleEditorIndex/>
+            element: <ModuleEditorIndex />
           },
           {
             path: 'choiceStep',
-            element: <ChoiceStep/>,
+            element: <ChoiceStep />,
           },
           {
             path: 'updateModule',
@@ -186,7 +202,7 @@ const router = createBrowserRouter([
           {
             path: 'step/0/:stepId',
             loader: theoryLoader,
-            element: <TheoryEditor/>,
+            element: <TheoryEditor />,
             children: [
               {
                 path: 'update',
@@ -197,7 +213,7 @@ const router = createBrowserRouter([
           {
             path: 'step/2/:stepId',
             loader: taskLoader,
-            element: <TaskEditor/>,
+            element: <TaskEditor />,
             children: [
               {
                 path: 'update',
@@ -221,16 +237,16 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <ModuleEditorIndex/>
+            element: <ModuleEditorIndex />
           },
           {
             path: 'step/0/:stepId',
-            element: <Theory/>,
+            element: <Theory />,
             loader: theoryLoader
-          }, 
+          },
           {
             path: 'step/2/:stepId',
-            element: <Task/>,
+            element: <Task />,
             loader: taskLoader,
           }
         ]
@@ -249,7 +265,7 @@ const router = createBrowserRouter([
     path: '/logout',
     action: logoutAction,
     element: <ProfilePage />
-  },  
+  },
   {
     path: '/modulesList/:courseId',
     loader: modulesListLoader,
@@ -261,15 +277,20 @@ const router = createBrowserRouter([
   {
     path: '/groupsList/:teacherId',
     loader: groupsListLoader,
-  }, 
+  },
   {
     path: '/groups/connect/:groupId',
-    element: <GroupConnect/>,
+    element: <GroupConnect />,
     action: groupConnectAction,
-  }, {
+  }, 
+  {
     path: '/bindinCoursesForGroup/:groupId',
     loader: bindinCoursesForGroupLoader,
-  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+  }, 
+  {
+    path: 'message/:messageId',
+    loader: messageLoader,
+  }
 ])
 
 export default router;

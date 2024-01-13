@@ -11,9 +11,8 @@ const GroupConnect:FC = () => {
   const fetcher = useFetcher<string>();
   const location = useLocation();
   const store  = useContext(AuthContext);
-
   useEffect(() => {
-    if (fetcher.state == 'idle' && !fetcher.data) {
+    if (fetcher.state == 'idle' && !fetcher.data && store.isAuth) {
       fetcher.submit(location.pathname, {
         method: 'POST'
       });
@@ -22,9 +21,20 @@ const GroupConnect:FC = () => {
 
   return (
     <div className={style.message}>
-      <p>
-       {!fetcher.data ? 'Загрузка...' : fetcher.data} 
-      </p>
+      {
+        store.isAuth 
+          ? (
+              <p>
+               {!fetcher.data ? 'Загрузка...' : fetcher.data} 
+              </p>
+          )
+          : (
+            <p>
+              Чтобы присоединяется к группе, вы должны быть авторизованны как ученик
+            </p>
+          )
+      }
+
     </div>
   );
 };

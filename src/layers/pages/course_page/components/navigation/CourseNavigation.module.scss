@@ -2,6 +2,14 @@
   flex: 0 0 420px;
   padding-top: 24px;
   border-right: 2px solid white;
+  display: flex;
+  flex-direction: column;
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .navHeader {
@@ -29,3 +37,7 @@
   object-fit: cover;
 }
 
+.backButton {
+  padding: 0 20px;
+  margin-top: 10px;
+}

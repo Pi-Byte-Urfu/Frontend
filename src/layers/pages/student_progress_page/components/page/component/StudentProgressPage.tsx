@@ -5,9 +5,10 @@ import style from './StudentProgressPage.module.scss';
 import StudentsTasksList from '../../students_tasks_list/component/StudentsTasksList';
 import { getCourse } from '../../../../course_page_editor/api/getCourse';
 import { Link } from 'react-router-dom';
+import ReturnButton from '../../../../../components/return_button/ReturnButton';
 
 const StudentProgressPage: FC = () => {
-  const { courseId, userId } = useParams();
+  const { courseId, userId, groupId } = useParams();
   const progress = useLoaderData() as number;
   const bgc = progress < 40 ? 'rgba(217, 45, 32, 1)'
     : progress < 60 ? 'rgba(220, 104, 3, 1)' : 'rgba(3, 152, 85, 1)';
@@ -27,9 +28,9 @@ const StudentProgressPage: FC = () => {
   return (
     <div className={style.progress}>
       <div className={[style.progressContainer, '_container'].join(' ')}>
-        <h2 className={style.courseName}>
-          {courseName}
-        </h2>
+          <h2 className={style.courseName}>
+            {courseName}
+          </h2>       
         <div className={style.content}>
           <div className={style.column}>
             <div className={style.header}>

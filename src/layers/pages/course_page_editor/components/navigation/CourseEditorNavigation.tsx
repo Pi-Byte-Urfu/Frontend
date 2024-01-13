@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import style from './CourseEditorNavigation.module.scss';
 import Button from '../../../../ui/button/Button';
 import { Form, useFetcher, useLoaderData, useParams } from 'react-router-dom';
@@ -12,6 +12,8 @@ import { AxiosResponse } from 'axios';
 import { IModuleItem } from '../../../../components/module_item/types/IModuleItem';
 import { IModulesListData } from '../../../../modules/modules_list/types/IModulesListData';
 import { IModuleResponse } from '../../types/IModuleResponse';
+import ReturnButton from '../../../../components/return_button/ReturnButton';
+import { AuthContext } from '../../../../..';
 
 interface ICourseEditorNavigationProps {
   courseName: string
@@ -26,6 +28,7 @@ const CourseEditorNavigation:FC<ICourseEditorNavigationProps> = ({courseName}) =
   const newModuleFetcher = useFetcher<IModuleResponse>();
   const modulesFetcher = useFetcher<IModuleItem[]>();
   const [modules, setModules] = useState<IModuleItem[]>([]);
+  const store = useContext(AuthContext);
 
   useEffect(() => {
     if (newModuleFetcher.data != null && newModuleNameInput.current != null) {
@@ -83,6 +86,9 @@ const CourseEditorNavigation:FC<ICourseEditorNavigationProps> = ({courseName}) =
           <span className={style.plus}>+</span>
         </Button>
       </newModuleFetcher.Form>
+      <div className={style.backButton}>
+        <ReturnButton path={`/profile/${store.user?.id}/courses`} text='Обратно к курсам'/>
+      </div>
     </div>
   );
 };

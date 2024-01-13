@@ -1,6 +1,8 @@
 .nav {
   flex: 0 0 420px;
   border-right: 2px solid rgba(248, 249, 252, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .navHeader {
@@ -13,4 +15,9 @@
   line-height: 24px;
   font-weight: 600;
   color: rgba(248, 249, 252, 1)
+}
+
+.backButton {
+  padding: 0 20px;
+  margin-top: 10px;
 }

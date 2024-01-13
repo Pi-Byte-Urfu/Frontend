@@ -1574,7 +1574,9 @@ pre.diff-highlight>code .token.token.inserted:not(.prefix) ::selection,pre.diff-
 }
 
 ._rootContentEditableWrapper_utjas_1006 {
-  position: relative
+  position: relative;
+  max-height: 540px;
+  overflow-y: auto;
 }
 
 ._downshiftContainer_utjas_1012 {

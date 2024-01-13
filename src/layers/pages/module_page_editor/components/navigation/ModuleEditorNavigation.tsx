@@ -12,6 +12,7 @@ import { IStepsList } from '../../../../modules/steps_list/types/IStepsList';
 import { IStepItem } from '../../../../components/step_item/types/IStepItem';
 import { IStepResponse } from '../../types/IStep';
 import { AxiosResponse } from 'axios';
+import ReturnButton from '../../../../components/return_button/ReturnButton';
 
 interface IModuleEditorNavigationProps {
   moduleName: string
@@ -89,6 +90,9 @@ const ModuleEditorNavigation: FC<IModuleEditorNavigationProps> = ({ moduleName }
           </span>
         </div>
       </newStepFetcher.Form>
+      <div className={style.backButton}>
+        <ReturnButton path={`/courseEditor/${courseId}`} text='Обратно к модулям'/>
+      </div>
     </div>
   );
 };

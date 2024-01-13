@@ -28,7 +28,7 @@ const TaskEditor:FC = () => {
   };
 
   return (
-    <div className={style.theory}>
+    <div className={style.task}>
       <updateFethcer.Form className={style.titleForm} id={'taskForm'}
         action='update'
         method='POST' ref={formRef} 

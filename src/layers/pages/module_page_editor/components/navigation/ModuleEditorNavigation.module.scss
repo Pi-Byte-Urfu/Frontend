@@ -1,6 +1,8 @@
 .nav {
   flex: 0 0 420px;
   border-right: 2px solid rgba(248, 249, 252, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .navHeader {
@@ -31,6 +33,10 @@
 }
 
 .createEntityForm {
-  border-top: 1px solid rgba(248, 249, 252, 1);
-  border-bottom: 1px solid rgba(248, 249, 252, 1);
+  border-top: 1px solid rgb(248, 249, 252);
+}
+
+.backButton {
+  padding: 0 20px;
+  margin-top: 10px;
 }

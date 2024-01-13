@@ -2,22 +2,26 @@
   display: flex;
   padding-top: 50px;
   flex-grow: 1;
+  align-items: stretch;
 }
 
 .description {
   padding: 40px 0;
   flex-grow: 1;
   padding: 24px 42px 0 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .descriptionContainer {
-  margin: 0 auto;
-  max-width: 1400px;
   background-color: rgba(248, 249, 252, 1);
   border-radius: 8px;
-  height: 100%;
   padding: 45px 42px 45px;
   position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 
