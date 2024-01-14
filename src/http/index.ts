@@ -41,13 +41,13 @@ $api.interceptors.request.use((config) => {
 
 $api.interceptors.response.use(
   (res) => {
-    console.log(res);
+    //console.log(res);
     return res;
   },
   (error) => {
-    console.log(error)
+    //console.log(error)
     if (error.response != undefined) {
-      if (axios.isAxiosError(error) && error.response.status == 400) {
+      if (axios.isAxiosError(error) && (error.response.status == 400 || error.response.status == 422)) {
         return error.response;
       } 
 

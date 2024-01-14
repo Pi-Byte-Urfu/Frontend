@@ -16,7 +16,7 @@ const StudentPageHeader:FC = () => {
             </NavLink>
           </li>
           <li className={mainStyles.navItem}>
-            <NavLink to={`questions`}
+            <NavLink to={`chats`}
               className={({isActive, isPending}) => isActive ? mainStyles.activeLink : ''}
             >
               Вопросы учителю

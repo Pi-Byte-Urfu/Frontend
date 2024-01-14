@@ -1,3 +1,8 @@
 export interface INewMessage {
-  text: string
+  id: number
+  chatId: number
+  userId: number
+  messageText: string
+  isRead: false
+  createdAt: number
 }

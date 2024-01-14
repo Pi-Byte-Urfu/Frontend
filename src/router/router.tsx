@@ -61,6 +61,8 @@ import ChatIndex from "../layers/modules/chat/components/chat_index/ChatIndex";
 import ChatInfo from "../layers/modules/chat/components/chat_info/component/ChatInfo";
 import { chatPageLoader } from "../layers/modules/chat/components/page/loader/chatPageLoader";
 import { messageLoader } from "../layers/modules/chat/components/chatNavItem/loader/messageLoader";
+import { messagesLoader } from "../layers/modules/chat/components/chat_info/loader/messagesLoader";
+import { newMessageAction } from "../layers/modules/chat/components/chat_info/action/newMessageAction";
 
 const router = createBrowserRouter([
   {
@@ -112,7 +114,14 @@ const router = createBrowserRouter([
               },
               {
                 path: 'info/:chatId',
-                element: <ChatInfo/>
+                element: <ChatInfo/>,
+                loader: messagesLoader,
+                children: [
+                  {
+                    path: 'newMessage',
+                    action: newMessageAction         
+                  }
+                ]
               }
             ]
           },
@@ -281,7 +290,7 @@ const router = createBrowserRouter([
   {
     path: '/groups/connect/:groupId',
     element: <GroupConnect />,
-    action: groupConnectAction,
+    loader: groupConnectAction,
   }, 
   {
     path: '/bindinCoursesForGroup/:groupId',

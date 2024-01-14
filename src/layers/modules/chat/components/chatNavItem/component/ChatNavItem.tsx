@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import style from './ChatNavItem.module.scss';
-import { useFetcher } from 'react-router-dom';
+import { useFetcher, useParams } from 'react-router-dom';
 import { IMessage } from '../../../types/IMessage';
 
 interface IChatNavItemProps {
@@ -14,17 +14,18 @@ const ChatNavItem:FC<IChatNavItemProps> = ({userPhoto, userFullname, lastMessage
   const fetcher = useFetcher<IMessage>();
   const [messageText, setMessageText] =  useState<string>('');
   const [data, setData] = useState<Date>();
+  const { userId } = useParams();
 
   useEffect(() => {
-    if (fetcher.state == 'idle') {
-      fetcher.load(`message/${lastMessageId}`)
+    if (fetcher.state == 'idle' && lastMessageId != -1) {
+      fetcher.load(`/message/${lastMessageId}`)
     }
   }, [chatId]);
 
   useEffect(() => {
     if (fetcher.data) {
       setMessageText(fetcher.data.messageText);
-      setData(new Date(fetcher.data.createdAt));
+      setData(new Date(fetcher.data.createdAt * 1000));
     }
   }, [fetcher])
   return (
@@ -38,11 +39,20 @@ const ChatNavItem:FC<IChatNavItemProps> = ({userPhoto, userFullname, lastMessage
             {userFullname}
           </div>
           {
-            fetcher.data && (
+            lastMessageId != -1 && (
               <div className={style.data}>
-                
+                {
+                  data?.toLocaleDateString()
+                }
               </div>
             )
+          }
+        </div>
+        <div className={style.lastMessage}>
+          {
+            lastMessageId == -1 ? 'Пустой чат' :
+               userId != undefined && fetcher.data?.senderId == +userId
+              ? `Вы: ${messageText}` : `${messageText}`
           }
         </div>
       </div>

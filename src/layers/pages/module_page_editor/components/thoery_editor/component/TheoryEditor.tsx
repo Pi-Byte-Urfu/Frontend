@@ -38,7 +38,7 @@ const TheoryEditor = () => {
         <input className={style.titleInput} 
           type='text' 
           name='name' 
-          placeholder={"Измените имя step'a"}
+          placeholder={"Измените имя шага"}
           defaultValue={fetcher.data?.name}
           onChange={() => {
             if (submitBtnRef.current != null) {

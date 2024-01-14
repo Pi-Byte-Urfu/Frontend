@@ -1,0 +1,15 @@
+.chatPage {
+  display: flex;
+  flex-grow: 1;
+}
+
+.chatNavigation {
+  flex: 0 0 400px;
+  border-right: 1px solid rgb(248, 249, 252);
+  max-height: 590px;
+  overflow: auto;
+}
+
+.chatContent {
+  flex-grow: 1;
+}

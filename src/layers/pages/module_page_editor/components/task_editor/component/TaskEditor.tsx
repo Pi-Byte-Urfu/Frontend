@@ -36,7 +36,7 @@ const TaskEditor:FC = () => {
         <input className={[style.titleInput].join(' ')} 
           type='text' 
           name='name' 
-          placeholder={"Измените имя step'a"}
+          placeholder={"Измените имя шага"}
           defaultValue={fetcher.data?.name}
           onChange={() => {
             if (submitBtnRef.current != null) {

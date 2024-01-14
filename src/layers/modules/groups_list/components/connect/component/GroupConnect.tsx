@@ -1,40 +1,28 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, Fragment, useContext, useEffect, useMemo, useState } from 'react';
 import style from './GroupConnect.module.scss';
-import { useFetcher, useLocation, useParams } from 'react-router-dom';
+import { useFetcher, useLoaderData, useLocation, useParams } from 'react-router-dom';
 import { observe } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { AuthContext } from '../../../../../..';
+import { AuthContext, store } from '../../../../../..';
 import { Axios, AxiosResponse } from 'axios';
+import { UserType } from '../../../../../../types/userType';
+import ReturnButton from '../../../../../components/return_button/ReturnButton';
 
-const GroupConnect:FC = () => {
+const GroupConnect: FC = () => {
   const { groupId } = useParams();
-  const fetcher = useFetcher<string>();
-  const location = useLocation();
-  const store  = useContext(AuthContext);
-  useEffect(() => {
-    if (fetcher.state == 'idle' && !fetcher.data && store.isAuth) {
-      fetcher.submit(location.pathname, {
-        method: 'POST'
-      });
-    }
-  }, [groupId])
+  const data = useLoaderData() as string;
+  const message = !store.isAuth || store.user?.userType == UserType.teacher ? 'Чтобы присоединиться к группе, вы должны быть авторизованны как ученик' : data;
 
   return (
     <div className={style.message}>
       {
-        store.isAuth 
-          ? (
-              <p>
-               {!fetcher.data ? 'Загрузка...' : fetcher.data} 
-              </p>
-          )
-          : (
-            <p>
-              Чтобы присоединяется к группе, вы должны быть авторизованны как ученик
-            </p>
-          )
+        <p>
+          {message}
+        </p>
       }
-
+      <div className={style.backButton}>
+        <ReturnButton path='/' text='На главную'/>
+      </div>
     </div>
   );
 };

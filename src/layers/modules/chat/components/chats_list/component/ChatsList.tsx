@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 import { IMessage } from '../../../types/IMessage';
 import { IChat } from '../../../types/IChat';
 import { NavLink } from 'react-router-dom';
+import ChatNavItem from '../../chatNavItem/component/ChatNavItem';
 
 const ChatsList = () => {
   const messages = useLoaderData() as IChat[];
@@ -23,7 +24,10 @@ const ChatsList = () => {
                   isActive ? [style.link, style.active].join(' ') : style.link}
                   to={`info/${chat.chatId}`}
               >
-                
+                <ChatNavItem chatId={chat.chatId} userPhoto={chat.userPhoto} 
+                  userFullname={`${chat.userName} ${chat.userSurname}`}
+                  lastMessageId={chat.lastMessageId}
+                />
               </NavLink>
             </li>
           ))

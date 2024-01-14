@@ -27,6 +27,9 @@ const Task:FC = () => {
       {
         store.user?.userType == UserType.student && (
         <div className={style.fileUploader}>
+          <div className={style.fileHeader}>
+            Загрузите файл для задания
+          </div>
           <FileUploader targetPath={`progress/answer/${stepId}`}/>
         </div>          
         )
