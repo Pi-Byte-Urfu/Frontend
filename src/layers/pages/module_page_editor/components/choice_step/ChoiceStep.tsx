@@ -10,16 +10,23 @@ import btnStyles from '../../../../ui/button/Button.module.scss';
 const ChoiceStep: FC = () => {
   let prevElem = document.querySelector(`.${style.formField}`);
   console.log(prevElem)
-  async function clickHandler(ev: React.MouseEvent<HTMLDivElement>) {
+  async function clickHandler(ev: any) {
     if (ev.currentTarget.classList.contains(style.active)) {
       return
     };
-    ev.currentTarget.classList.add(style.active)
+    ev.currentTarget.classList.add(style.active);
+    const input = ev.currentTarget.querySelector('input');
+    input.checked = true;
     if (prevElem != null) {
       prevElem.classList.remove(`${style.active}`);
+      const input = prevElem.querySelector('input');
+      if (input != null) {
+        input.checked = false;
+      };
       prevElem = ev.currentTarget;
       return
     } 
+    
     prevElem = document.querySelector(`.${style.active}`);
     prevElem?.classList.remove(style.active);
     prevElem = ev.currentTarget
@@ -32,7 +39,7 @@ const ChoiceStep: FC = () => {
         Выбор активности
       </h2>
       <div className={style.formFields}>
-        <div className={[style.formField, style.active].join(' ')} onClick={clickHandler}>
+        <div className={[style.formField, style.active].join(' ')} onClick={clickHandler} data-type={StepType.Theory}>
           <div className={style.formFieldContainer}>
             <label className={style.label} onClick={(ev: React.MouseEvent<HTMLLabelElement>)=> {
               
@@ -50,7 +57,7 @@ const ChoiceStep: FC = () => {
             </label>
           </div>
         </div>
-        <div className={style.formField} onClick={clickHandler}>
+        <div className={style.formField} onClick={clickHandler} data-type={StepType.Task}>
           <div className={style.formFieldContainer}>
             <label className={style.label}>
               <div className={style.labelBody}>
