@@ -4,7 +4,7 @@ http://5.23.54.98/
 
 Если сервер недоступен, можно посмотерть краткий обзор сайта по ссылке:
 
-https://drive.google.com/drive/folders/11GOcZBecqQpPL6lh4qgbRE0U-ZvV8bLx
+https://drive.google.com/file/d/1lRAXoKDUlbzzF7draUXkutct1G1ySnaZ/view?usp=drive_link
 
 
 Вкурсе - образовательный сервис, где ученики проходят курсы, которые создают для них учителя. Функионал сервиса:
